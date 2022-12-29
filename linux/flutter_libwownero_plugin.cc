@@ -8,17 +8,17 @@
 
 #define flutter_libwownero_PLUGIN(obj) \
   (G_TYPE_CHECK_INSTANCE_CAST((obj), flutter_libwownero_plugin_get_type(), \
-                              FlutterLibmoneroPlugin))
+                              FlutterLibwowneroPlugin))
 
-struct _FlutterLibmoneroPlugin {
+struct _FlutterLibwowneroPlugin {
   GObject parent_instance;
 };
 
-G_DEFINE_TYPE(FlutterLibmoneroPlugin, flutter_libwownero_plugin, g_object_get_type())
+G_DEFINE_TYPE(FlutterLibwowneroPlugin, flutter_libwownero_plugin, g_object_get_type())
 
 // Called when a method call is received from Flutter.
 static void flutter_libwownero_plugin_handle_method_call(
-    FlutterLibmoneroPlugin* self,
+    FlutterLibwowneroPlugin* self,
     FlMethodCall* method_call) {
   g_autoptr(FlMethodResponse) response = nullptr;
 
@@ -41,20 +41,20 @@ static void flutter_libwownero_plugin_dispose(GObject* object) {
   G_OBJECT_CLASS(flutter_libwownero_plugin_parent_class)->dispose(object);
 }
 
-static void flutter_libwownero_plugin_class_init(FlutterLibmoneroPluginClass* klass) {
+static void flutter_libwownero_plugin_class_init(FlutterLibwowneroPluginClass* klass) {
   G_OBJECT_CLASS(klass)->dispose = flutter_libwownero_plugin_dispose;
 }
 
-static void flutter_libwownero_plugin_init(FlutterLibmoneroPlugin* self) {}
+static void flutter_libwownero_plugin_init(FlutterLibwowneroPlugin* self) {}
 
 static void method_call_cb(FlMethodChannel* channel, FlMethodCall* method_call,
                            gpointer user_data) {
-  FlutterLibmoneroPlugin* plugin = flutter_libwownero_PLUGIN(user_data);
+  FlutterLibwowneroPlugin* plugin = flutter_libwownero_PLUGIN(user_data);
   flutter_libwownero_plugin_handle_method_call(plugin, method_call);
 }
 
 void flutter_libwownero_plugin_register_with_registrar(FlPluginRegistrar* registrar) {
-  FlutterLibmoneroPlugin* plugin = flutter_libwownero_PLUGIN(
+  FlutterLibwowneroPlugin* plugin = flutter_libwownero_PLUGIN(
       g_object_new(flutter_libwownero_plugin_get_type(), nullptr));
 
   g_autoptr(FlStandardMethodCodec) codec = fl_standard_method_codec_new();

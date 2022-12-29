@@ -11,10 +11,10 @@ G_BEGIN_DECLS
 #define FLUTTER_PLUGIN_EXPORT
 #endif
 
-typedef struct _FlutterLibmoneroPlugin FlutterLibmoneroPlugin;
+typedef struct _FlutterLibwowneroPlugin FlutterLibwowneroPlugin;
 typedef struct {
   GObjectClass parent_class;
-} FlutterLibmoneroPluginClass;
+} FlutterLibwowneroPluginClass;
 
 FLUTTER_PLUGIN_EXPORT GType flutter_libwownero_plugin_get_type();
 
