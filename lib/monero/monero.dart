@@ -7,7 +7,7 @@ import 'package:cw_core/transaction_history.dart';
 import 'package:cw_core/transaction_info.dart';
 import 'package:cw_core/balance.dart';
 import 'package:cw_core/output_info.dart';
-import 'package:flutter_libmonero/view_model/send/output.dart';
+import 'package:flutter_libwownero/view_model/send/output.dart';
 import 'package:cw_core/wallet_service.dart';
 import 'package:hive/hive.dart';
 import 'package:cw_core/get_height_by_date.dart';

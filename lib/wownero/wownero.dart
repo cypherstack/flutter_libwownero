@@ -17,7 +17,7 @@ import 'package:cw_wownero/wownero_transaction_creation_credentials.dart';
 import 'package:cw_wownero/wownero_transaction_info.dart';
 import 'package:cw_wownero/wownero_wallet.dart';
 import 'package:cw_wownero/wownero_wallet_service.dart';
-import 'package:flutter_libmonero/view_model/send/output.dart';
+import 'package:flutter_libwownero/view_model/send/output.dart';
 import 'package:hive/hive.dart';
 import 'package:cw_core/get_height_by_date.dart';
 import 'package:mobx/mobx.dart';

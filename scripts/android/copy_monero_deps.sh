@@ -10,7 +10,7 @@ COMMIT=$(git log -1 --pretty=format:"%H")
 OS="ANDROID"
 sed -i "/\/\*${OS}_VERSION/c\\/\*${OS}_VERSION\*\/ const ${OS}_VERSION = \"$COMMIT\";" $VERSIONS_FILE
 WORKDIR="$(pwd)/"build
-CW_DIR="$(pwd)"/../../../flutter_libmonero
+CW_DIR="$(pwd)"/../../../flutter_libwownero
 CW_EXRTERNAL_DIR=${CW_DIR}/cw_shared_external/ios/External/android
 CW_WOWNERO_EXTERNAL_DIR=${CW_DIR}/cw_wownero/ios/External/android
 CW_MONERO_EXTERNAL_DIR=${CW_DIR}/cw_monero/ios/External/android

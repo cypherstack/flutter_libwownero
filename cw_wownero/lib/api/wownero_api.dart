@@ -6,12 +6,13 @@ DynamicLibrary get wowneroApi {
     return Platform.isWindows
         ? DynamicLibrary.open("libcw_wownero.dll")
         : Platform.isAndroid || Platform.isLinux
-        ? DynamicLibrary.open('crypto_plugins/flutter_libmonero/scripts/linux/build/libcw_wownero.so')
-        : DynamicLibrary.open("cw_wownero.framework/cw_wownero");
+            ? DynamicLibrary.open(
+                'crypto_plugins/flutter_libwownero/scripts/linux/build/libcw_wownero.so')
+            : DynamicLibrary.open("cw_wownero.framework/cw_wownero");
   }
   return Platform.isWindows
       ? DynamicLibrary.open("libcw_wownero.dll")
       : Platform.isAndroid || Platform.isLinux
-      ? DynamicLibrary.open("libcw_wownero.so")
-      : DynamicLibrary.open("cw_wownero.framework/cw_wownero");
+          ? DynamicLibrary.open("libcw_wownero.so")
+          : DynamicLibrary.open("cw_wownero.framework/cw_wownero");
 }

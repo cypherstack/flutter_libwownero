@@ -1,8 +1,8 @@
 import 'package:cw_core/wallet_base.dart';
 import 'package:cw_core/wallet_type.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_libmonero/entities/parsed_address.dart';
-import 'package:flutter_libmonero/monero/monero.dart';
+import 'package:flutter_libwownero/entities/parsed_address.dart';
+import 'package:flutter_libwownero/monero/monero.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 

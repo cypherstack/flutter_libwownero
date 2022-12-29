@@ -3,7 +3,7 @@ import UIKit
 
 public class SwiftFlutterLibmoneroPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_libmonero", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "flutter_libwownero", binaryMessenger: registrar.messenger())
     let instance = SwiftFlutterLibmoneroPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }

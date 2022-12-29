@@ -48,7 +48,7 @@ find . -path ./lib -prune -o -name '*.a' -exec cp '{}' lib \;
 cp -r ./lib/* $DEST_LIB_DIR
 cp ../../src/wallet/api/wallet2_api.h  $DEST_INCLUDE_DIR
 
-CW_DIR="$(pwd)"/../../../../../../../flutter_libmonero
+CW_DIR="$(pwd)"/../../../../../../../flutter_libwownero
 CW_WOWNERO_EXTERNAL_DIR=${CW_DIR}/cw_wownero/ios/External/android	
 mkdir -p $CW_WOWNERO_EXTERNAL_DIR/include	
 cp ../../src/wallet/api/wallet2_api.h ${CW_WOWNERO_EXTERNAL_DIR}/include

@@ -1,4 +1,4 @@
-name: flutter_libmonero
+name: flutter_libwownero
 description: A new flutter plugin project.
 version: 0.0.1
 author:
@@ -53,7 +53,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.flutter_libmonero
+        package: com.example.flutter_libwownero
         pluginClass: FlutterLibmoneroPlugin
       ios:
         pluginClass: FlutterLibmoneroPlugin

@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
-set(PROJECT_NAME "flutter_libmonero")
+set(PROJECT_NAME "flutter_libwownero")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 # This value is used when generating builds using this plugin, so it must
 # not be changed
-set(PLUGIN_NAME "flutter_libmonero_plugin")
+set(PLUGIN_NAME "flutter_libwownero_plugin")
 
 add_library(${PLUGIN_NAME} SHARED
-  "flutter_libmonero_plugin.cc"
+  "flutter_libwownero_plugin.cc"
 )
 apply_standard_settings(${PLUGIN_NAME})
 set_target_properties(${PLUGIN_NAME} PROPERTIES
@@ -19,7 +19,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE flutter)
 target_link_libraries(${PLUGIN_NAME} PRIVATE PkgConfig::GTK)
 
 # List of absolute paths to libraries that should be bundled with the plugin
-set(flutter_libmonero_bundled_libraries
+set(flutter_libwownero_bundled_libraries
   ""
   PARENT_SCOPE
 )

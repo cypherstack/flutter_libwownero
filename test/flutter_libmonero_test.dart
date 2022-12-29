@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_libmonero/flutter_libmonero.dart';
+import 'package:flutter_libwownero/flutter_libwownero.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('flutter_libmonero');
+  const MethodChannel channel = MethodChannel('flutter_libwownero');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 

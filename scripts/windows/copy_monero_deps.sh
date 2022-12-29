@@ -2,7 +2,7 @@
 
 . ./config.sh
 
-CW_DIR=${SCRIPTDIR}/../../../flutter_libmonero # 🧐
+CW_DIR=${SCRIPTDIR}/../../../flutter_libwownero # 🧐
 CW_EXTERNAL_DIR=${CW_DIR}/cw_shared_external/ios/External/android
 CW_MONERO_EXTERNAL_DIR=${CW_DIR}/cw_monero/ios/External/android
 

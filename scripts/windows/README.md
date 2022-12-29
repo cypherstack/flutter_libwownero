@@ -1,4 +1,4 @@
-# `flutter_libmonero` for Windows
+# `flutter_libwownero` for Windows
 Supported platform: Ubuntu 20.04
 
 ### Install dependencies
