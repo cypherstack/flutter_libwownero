@@ -13,7 +13,6 @@ WORKDIR="$(pwd)/"build
 CW_DIR="$(pwd)"/../../../flutter_libwownero
 CW_EXRTERNAL_DIR=${CW_DIR}/cw_shared_external/ios/External/android
 CW_WOWNERO_EXTERNAL_DIR=${CW_DIR}/cw_wownero/ios/External/android
-CW_MONERO_EXTERNAL_DIR=${CW_DIR}/cw_monero/ios/External/android
 for arch in "aarch" "aarch64" "i686" "x86_64"
 do
 
@@ -41,13 +40,8 @@ mkdir -p $INCLUDE_DIR
 cp -r ${PREFIX}/lib/* $LIB_DIR
 cp -r ${PREFIX}/include/* $INCLUDE_DIR
 
-if [ -f "$LIBANBOUND_PATH" ]; then
- cp $LIBANBOUND_PATH ${LIB_DIR}/monero
-fi
-
 done
 
-mkdir -p ${CW_MONERO_EXTERNAL_DIR}/include
 mkdir -p ${CW_WOWNERO_EXTERNAL_DIR}/include
 
 cp $CW_EXRTERNAL_DIR/x86/include/monero/wallet2_api.h ${CW_MONERO_EXTERNAL_DIR}/include
