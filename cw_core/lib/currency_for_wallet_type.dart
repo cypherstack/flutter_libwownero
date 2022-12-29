@@ -1,5 +1,5 @@
-import 'package:cw_core/crypto_currency.dart';
-import 'package:cw_core/wallet_type.dart';
+import 'package:wow_cw_core/crypto_currency.dart';
+import 'package:wow_cw_core/wallet_type.dart';
 
 CryptoCurrency? currencyForWalletType(WalletType? type) {
   switch (type) {

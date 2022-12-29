@@ -1,10 +1,10 @@
-import 'package:cw_core/wallet_addresses.dart';
-import 'package:cw_core/wallet_info.dart';
-import 'package:cw_core/account.dart';
 import 'package:cw_wownero/wownero_account_list.dart';
 import 'package:cw_wownero/wownero_subaddress_list.dart';
-import 'package:cw_core/subaddress.dart';
 import 'package:mobx/mobx.dart';
+import 'package:wow_cw_core/account.dart';
+import 'package:wow_cw_core/subaddress.dart';
+import 'package:wow_cw_core/wallet_addresses.dart';
+import 'package:wow_cw_core/wallet_info.dart';
 
 part 'wownero_wallet_addresses.g.dart';
 

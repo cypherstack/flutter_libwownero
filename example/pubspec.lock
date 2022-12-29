@@ -85,10 +85,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  cw_core:
+  wow_cw_core:
     dependency: "direct main"
     description:
-      path: "../cw_core"
+      path: "../wow_cw_core"
       relative: true
     source: path
     version: "0.0.1"

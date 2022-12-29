@@ -1,7 +1,7 @@
-import 'package:cw_core/transaction_priority.dart';
-import 'package:cw_core/wallet_type.dart';
 //import 'package:flutter_libmonero/generated/i18n.dart';
-import 'package:cw_core/enumerable_item.dart';
+import 'package:wow_cw_core/enumerable_item.dart';
+import 'package:wow_cw_core/transaction_priority.dart';
+import 'package:wow_cw_core/wallet_type.dart';
 
 class MoneroTransactionPriority extends TransactionPriority {
   const MoneroTransactionPriority({String? title, int? raw})

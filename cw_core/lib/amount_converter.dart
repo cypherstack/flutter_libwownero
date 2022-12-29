@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:cw_core/crypto_currency.dart';
+import 'package:wow_cw_core/crypto_currency.dart';
 
 class AmountConverter {
   static const _moneroAmountLength = 12;
@@ -112,7 +112,8 @@ class AmountConverter {
     }
   }
 
-  static double cryptoAmountToDouble({required num amount, required num divider}) =>
+  static double cryptoAmountToDouble(
+          {required num amount, required num divider}) =>
       amount / divider;
 
   static String _moneroAmountToString(int amount) => _moneroAmountFormat.format(
@@ -124,8 +125,9 @@ class AmountConverter {
   static int _moneroParseAmount(String amount) =>
       _moneroAmountFormat.parse(amount).toInt();
 
-  static String _wowneroAmountToString(int amount) => _wowneroAmountFormat.format(
-      cryptoAmountToDouble(amount: amount, divider: _wowneroAmountDivider));
+  static String _wowneroAmountToString(int amount) =>
+      _wowneroAmountFormat.format(
+          cryptoAmountToDouble(amount: amount, divider: _wowneroAmountDivider));
 
   static double _wowneroAmountToDouble(int amount) =>
       cryptoAmountToDouble(amount: amount, divider: _wowneroAmountDivider);

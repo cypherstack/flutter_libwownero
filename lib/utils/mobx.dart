@@ -1,7 +1,7 @@
 // import 'dart:async';
 // import 'package:hive/hive.dart';
 // import 'package:mobx/mobx.dart';
-// import 'package:cw_core/keyable.dart';
+// import 'package:wow_cw_core/keyable.dart';
 //
 // void connectMapToListWithTransform<T extends Keyable, Y extends Keyable>(
 //     ObservableMap<dynamic, T> source,

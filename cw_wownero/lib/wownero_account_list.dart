@@ -1,6 +1,6 @@
-import 'package:mobx/mobx.dart';
-import 'package:cw_core/account.dart';
 import 'package:cw_wownero/api/account_list.dart' as account_list;
+import 'package:mobx/mobx.dart';
+import 'package:wow_cw_core/account.dart';
 
 part 'wownero_account_list.g.dart';
 
@@ -44,9 +44,8 @@ abstract class WowneroAccountListBase with Store {
 
   List<Account> getAll() => account_list
       .getAllAccount()
-      .map((accountRow) => Account(
-        id: accountRow.getId(),
-        label: accountRow.getLabel()))
+      .map((accountRow) =>
+          Account(id: accountRow.getId(), label: accountRow.getLabel()))
       .toList();
 
   Future addAccount({String? label}) async {

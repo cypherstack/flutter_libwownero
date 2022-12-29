@@ -1,5 +1,5 @@
-import 'package:cw_core/transaction_direction.dart';
-import 'package:cw_core/keyable.dart';
+import 'package:wow_cw_core/keyable.dart';
+import 'package:wow_cw_core/transaction_direction.dart';
 
 abstract class TransactionInfo extends Object with Keyable {
   String? id;

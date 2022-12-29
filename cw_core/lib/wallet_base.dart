@@ -1,17 +1,17 @@
-import 'package:mobx/mobx.dart';
-import 'package:cw_core/balance.dart';
-import 'package:cw_core/transaction_info.dart';
-import 'package:cw_core/transaction_priority.dart';
-import 'package:cw_core/wallet_addresses.dart';
 import 'package:flutter/foundation.dart';
-import 'package:cw_core/wallet_info.dart';
-import 'package:cw_core/pending_transaction.dart';
-import 'package:cw_core/transaction_history.dart';
-import 'package:cw_core/currency_for_wallet_type.dart';
-import 'package:cw_core/crypto_currency.dart';
-import 'package:cw_core/sync_status.dart';
-import 'package:cw_core/node.dart';
-import 'package:cw_core/wallet_type.dart';
+import 'package:mobx/mobx.dart';
+import 'package:wow_cw_core/balance.dart';
+import 'package:wow_cw_core/crypto_currency.dart';
+import 'package:wow_cw_core/currency_for_wallet_type.dart';
+import 'package:wow_cw_core/node.dart';
+import 'package:wow_cw_core/pending_transaction.dart';
+import 'package:wow_cw_core/sync_status.dart';
+import 'package:wow_cw_core/transaction_history.dart';
+import 'package:wow_cw_core/transaction_info.dart';
+import 'package:wow_cw_core/transaction_priority.dart';
+import 'package:wow_cw_core/wallet_addresses.dart';
+import 'package:wow_cw_core/wallet_info.dart';
+import 'package:wow_cw_core/wallet_type.dart';
 
 abstract class WalletBase<
     BalanceType extends Balance,

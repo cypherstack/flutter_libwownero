@@ -1,9 +1,9 @@
-import 'package:cw_core/amount_converter.dart';
-import 'package:cw_core/crypto_currency.dart';
-import 'package:cw_core/pending_transaction.dart';
 import 'package:cw_wownero/api/structs/pending_transaction.dart';
 import 'package:cw_wownero/api/transaction_history.dart'
     as wownero_transaction_history;
+import 'package:wow_cw_core/amount_converter.dart';
+import 'package:wow_cw_core/crypto_currency.dart';
+import 'package:wow_cw_core/pending_transaction.dart';
 
 class DoubleSpendException implements Exception {
   DoubleSpendException();

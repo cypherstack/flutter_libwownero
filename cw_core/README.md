@@ -1,4 +1,4 @@
-# cw_core
+# wow_cw_core
 
 A new Flutter package project.
 

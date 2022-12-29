@@ -1,16 +1,5 @@
 import 'dart:async';
 
-import 'package:cw_core/account.dart';
-import 'package:cw_core/crypto_currency.dart';
-import 'package:cw_core/monero_transaction_priority.dart';
-import 'package:cw_core/monero_wallet_keys.dart';
-import 'package:cw_core/monero_wallet_utils.dart';
-import 'package:cw_core/node.dart';
-import 'package:cw_core/pending_transaction.dart';
-import 'package:cw_core/sync_status.dart';
-import 'package:cw_core/transaction_priority.dart';
-import 'package:cw_core/wallet_base.dart';
-import 'package:cw_core/wallet_info.dart';
 import 'package:cw_wownero/api/structs/pending_transaction.dart';
 import 'package:cw_wownero/api/transaction_history.dart'
     as wownero_transaction_history;
@@ -28,6 +17,17 @@ import 'package:cw_wownero/wownero_transaction_info.dart';
 import 'package:cw_wownero/wownero_wallet_addresses.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
+import 'package:wow_cw_core/account.dart';
+import 'package:wow_cw_core/crypto_currency.dart';
+import 'package:wow_cw_core/monero_transaction_priority.dart';
+import 'package:wow_cw_core/monero_wallet_keys.dart';
+import 'package:wow_cw_core/monero_wallet_utils.dart';
+import 'package:wow_cw_core/node.dart';
+import 'package:wow_cw_core/pending_transaction.dart';
+import 'package:wow_cw_core/sync_status.dart';
+import 'package:wow_cw_core/transaction_priority.dart';
+import 'package:wow_cw_core/wallet_base.dart';
+import 'package:wow_cw_core/wallet_info.dart';
 
 part 'wownero_wallet.g.dart';
 

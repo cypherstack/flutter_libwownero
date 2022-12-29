@@ -1,5 +1,5 @@
-import 'package:cw_core/crypto_currency.dart';
 import 'package:hive/hive.dart';
+import 'package:wow_cw_core/crypto_currency.dart';
 
 part 'wallet_type.g.dart';
 

@@ -1,5 +1,5 @@
-import 'package:cw_core/enumerable_item.dart';
 import 'package:hive/hive.dart';
+import 'package:wow_cw_core/enumerable_item.dart';
 
 part 'crypto_currency.g.dart';
 

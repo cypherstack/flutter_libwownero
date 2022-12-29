@@ -1,17 +1,17 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:cw_core/monero_wallet_utils.dart';
-import 'package:cw_core/pathForWallet.dart';
-import 'package:cw_core/wallet_base.dart';
-import 'package:cw_core/wallet_credentials.dart';
-import 'package:cw_core/wallet_info.dart';
-import 'package:cw_core/wallet_service.dart';
-import 'package:cw_core/wallet_type.dart';
-import 'package:cw_wownero/api/exceptions/wallet_opening_exception.dart';
 import 'package:cw_wownero/api/wallet_manager.dart' as wownero_wallet_manager;
 import 'package:cw_wownero/wownero_wallet.dart';
 import 'package:hive/hive.dart';
+import 'package:wow_cw_core/monero_wallet_utils.dart';
+import 'package:wow_cw_core/pathForWallet.dart';
+import 'package:wow_cw_core/wallet_base.dart';
+import 'package:wow_cw_core/wallet_credentials.dart';
+import 'package:wow_cw_core/wallet_info.dart';
+import 'package:wow_cw_core/wallet_service.dart';
+import 'package:wow_cw_core/wallet_type.dart';
+import 'package:wow_cw_wownero/api/exceptions/wallet_opening_exception.dart';
 
 class WowneroNewWalletCredentials extends WalletCredentials {
   WowneroNewWalletCredentials(

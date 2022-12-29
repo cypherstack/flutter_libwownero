@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
-import 'package:cw_core/transaction_info.dart';
+import 'package:wow_cw_core/transaction_info.dart';
 
 abstract class TransactionHistoryBase<TransactionType extends TransactionInfo> {
   TransactionHistoryBase();

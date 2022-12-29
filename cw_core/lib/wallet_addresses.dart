@@ -1,4 +1,4 @@
-import 'package:cw_core/wallet_info.dart';
+import 'package:wow_cw_core/wallet_info.dart';
 
 abstract class WalletAddresses {
   WalletAddresses(this.walletInfo) {

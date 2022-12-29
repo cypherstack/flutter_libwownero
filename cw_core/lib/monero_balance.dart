@@ -1,6 +1,6 @@
-import 'package:cw_core/balance.dart';
 import 'package:flutter/foundation.dart';
-import 'package:cw_core/monero_amount_format.dart';
+import 'package:wow_cw_core/balance.dart';
+import 'package:wow_cw_core/monero_amount_format.dart';
 
 class MoneroBalance extends Balance {
   MoneroBalance({required this.fullBalance, required this.unlockedBalance})

@@ -1,10 +1,10 @@
 // import 'package:flutter_libmonero/di.dart';
-import 'package:cw_core/wallet_base.dart';
-import 'package:cw_core/wallet_credentials.dart';
-import 'package:cw_core/wallet_service.dart';
-import 'package:cw_core/wallet_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stack_wallet_backup/generate_password.dart';
+import 'package:wow_cw_core/wallet_base.dart';
+import 'package:wow_cw_core/wallet_credentials.dart';
+import 'package:wow_cw_core/wallet_service.dart';
+import 'package:wow_cw_core/wallet_type.dart';
 
 import 'key_service.dart';
 

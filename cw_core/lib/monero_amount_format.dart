@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:cw_core/crypto_amount_format.dart';
+import 'package:wow_cw_core/crypto_amount_format.dart';
 
 const moneroAmountLength = 12;
 const moneroAmountDivider = 1000000000000;

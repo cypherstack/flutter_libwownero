@@ -11,8 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cw_core:
-    path: ./../cw_core
+  wow_cw_core:
+    path: ./../wow_cw_core
 
   cw_monero:
     path: ./../cw_monero
