@@ -2,7 +2,6 @@ import 'package:cw_core/wallet_base.dart';
 import 'package:cw_core/wallet_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_libwownero/entities/parsed_address.dart';
-import 'package:flutter_libwownero/monero/monero.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 
@@ -62,9 +61,6 @@ abstract class OutputBase with Store {
         final _cryptoAmount = cryptoAmount!.replaceAll(',', '.');
         int _amount = 0;
         switch (walletType) {
-          case WalletType.monero:
-            _amount = monero.formatterMoneroParseAmount(amount: _cryptoAmount);
-            break;
           case WalletType.wownero:
             _amount =
                 wownero.formatterWowneroParseAmount(amount: _cryptoAmount);
@@ -89,10 +85,10 @@ abstract class OutputBase with Store {
     try {
       //TODO: should not be default fee, should be user chosen
       final fee = _wallet.calculateEstimatedFee(
-          monero.getDefaultTransactionPriority(), formattedCryptoAmount);
+          wownero.getDefaultTransactionPriority(), formattedCryptoAmount);
 
       if (_wallet.type == WalletType.monero) {
-        return monero.formatterMoneroAmountToDouble(amount: fee);
+        return wownero.formatterWowneroAmountToDouble(amount: fee);
       }
 
       if (_wallet.type == WalletType.wownero) {
