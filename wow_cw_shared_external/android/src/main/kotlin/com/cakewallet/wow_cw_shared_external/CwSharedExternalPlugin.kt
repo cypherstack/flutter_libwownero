@@ -1,4 +1,4 @@
-package com.cakewallet.cw_shared_external
+package com.cakewallet.wow_cw_shared_external
 
 import androidx.annotation.NonNull
 
@@ -18,7 +18,7 @@ class CwSharedExternalPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "cw_shared_external")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "wow_cw_shared_external")
     channel.setMethodCallHandler(this)
   }
 

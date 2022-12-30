@@ -7,7 +7,7 @@ add_library( cw_wownero
 
              find_library( log-lib log )
 
-set(EXTERNAL_LIBS_DIR ${CMAKE_SOURCE_DIR}/../../cw_shared_external/ios/External/android)
+set(EXTERNAL_LIBS_DIR ${CMAKE_SOURCE_DIR}/../../wow_cw_shared_external/ios/External/android)
 
 ############
 # libsodium

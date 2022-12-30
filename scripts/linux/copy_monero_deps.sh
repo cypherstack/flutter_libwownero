@@ -2,7 +2,7 @@
 
 WORKDIR="$(pwd)/"build
 CW_DIR="$(pwd)"/../../../flutter_libwownero
-CW_EXRTERNAL_DIR=${CW_DIR}/cw_shared_external/ios/External/android
+CW_EXRTERNAL_DIR=${CW_DIR}/wow_cw_shared_external/ios/External/android
 CW_WOWNERO_EXTERNAL_DIR=${CW_DIR}/cw_wownero/ios/External/android
 for arch in $TYPES_OF_BUILD
 do

@@ -1,12 +1,12 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint cw_shared_external.podspec` to validate before publishing.
+# Run `pod lib lint wow_cw_shared_external.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'cw_shared_external'
+  s.name             = 'wow_cw_shared_external'
   s.version          = '0.0.1'
-  s.summary          = 'Shared libraries for monero and haven.'
-  s.description      = 'Shared libraries for monero and haven.'
+  s.summary          = 'Libraries for wownero.'
+  s.description      = 'Libraries for wownero.'
   s.homepage         = 'http://cakewallet.com'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Cake Wallet' => 'm@cakewallet.com' }

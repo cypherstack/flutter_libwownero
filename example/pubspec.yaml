@@ -17,8 +17,8 @@ dependencies:
   cw_monero:
     path: ./../cw_monero
 
-  cw_shared_external:
-    path: ./../cw_shared_external
+  wow_cw_shared_external:
+    path: ./../wow_cw_shared_external
 
   flutter_libwownero:
     # When depending on this package from a real application you should use:

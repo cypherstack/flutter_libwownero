@@ -1,4 +1,4 @@
-group 'com.cakewallet.cw_shared_external'
+group 'com.cakewallet.wow_cw_shared_external'
 version '1.0-SNAPSHOT'
 
 buildscript {

@@ -22,8 +22,8 @@ dependencies:
   cw_wownero:
     path: ./cw_wownero
 
-  cw_shared_external:
-    path: ./cw_shared_external
+  wow_cw_shared_external:
+    path: ./wow_cw_shared_external
 
   stack_wallet_backup:
     git:

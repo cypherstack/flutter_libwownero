@@ -92,10 +92,10 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  cw_shared_external:
+  wow_cw_shared_external:
     dependency: "direct main"
     description:
-      path: cw_shared_external
+      path: wow_cw_shared_external
       relative: true
     source: path
     version: "0.0.1"
