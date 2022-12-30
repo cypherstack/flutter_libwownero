@@ -12,6 +12,7 @@ import 'package:hive/hive.dart';
 import 'package:mobx/mobx.dart';
 import 'package:wow_cw_core/account.dart' as wownero_account;
 import 'package:wow_cw_core/balance.dart';
+import 'package:wow_cw_core/get_height_by_date.dart';
 import 'package:wow_cw_core/monero_transaction_priority.dart';
 import 'package:wow_cw_core/output_info.dart';
 import 'package:wow_cw_core/transaction_history.dart';
