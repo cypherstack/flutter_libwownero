@@ -51,11 +51,11 @@ flutter:
     platforms:
       android:
         package: com.example.flutter_libwownero
-        pluginClass: FlutterLibmoneroPlugin
+        pluginClass: FlutterLibwowneroPlugin
       ios:
-        pluginClass: FlutterLibmoneroPlugin
+        pluginClass: FlutterLibwowneroPlugin
       linux:
-        pluginClass: FlutterLibmoneroPlugin
+        pluginClass: FlutterLibwowneroPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

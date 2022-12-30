@@ -1,4 +1,4 @@
-#import "FlutterLibmoneroPlugin.h"
+#import "FlutterLibwowneroPlugin.h"
 #if __has_include(<flutter_libwownero/flutter_libwownero-Swift.h>)
 #import <flutter_libwownero/flutter_libwownero-Swift.h>
 #else
@@ -8,8 +8,8 @@
 #import "flutter_libwownero-Swift.h"
 #endif
 
-@implementation FlutterLibmoneroPlugin
+@implementation FlutterLibwowneroPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftFlutterLibmoneroPlugin registerWithRegistrar:registrar];
+  [SwiftFlutterLibwowneroPlugin registerWithRegistrar:registrar];
 }
 @end
