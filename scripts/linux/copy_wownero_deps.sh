@@ -7,9 +7,6 @@ WORKDIR="$(pwd)/"build
 CW_DIR="$(pwd)"/../../
 CW_EXTERNAL_DIR=${CW_DIR}wow_cw_shared_external/ios/External/android
 CW_WOWNERO_EXTERNAL_DIR=${CW_DIR}cw_wownero/ios/External/android
-echo $CW_DIR
-echo $CW_WOWNERO_EXTERNAL_DIR
-echo $TYPES_OF_BUILD
 for arch in $TYPES_OF_BUILD
 do
 	PREFIX=${WORKDIR}/prefix_${arch}
@@ -34,6 +31,7 @@ do
 
 	cp -r ${PREFIX}/lib/* $LIB_DIR
 	cp -r ${PREFIX}/include/* $INCLUDE_DIR
+	cp ${PREFIX}/lib/libunbound.a ${PREFIX}/lib/wownero/libunbound.a
 
 	mkdir -p ${CW_WOWNERO_EXTERNAL_DIR}/include
 
