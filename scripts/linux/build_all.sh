@@ -9,5 +9,5 @@ mkdir build
 ./build_zmq.sh
 ./build_wownero.sh
 ./build_wownero_seed.sh
-./copy_monero_deps.sh
+./copy_wownero_deps.sh
 ./build_sharedfile.sh
