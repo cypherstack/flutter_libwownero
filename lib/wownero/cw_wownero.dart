@@ -160,15 +160,15 @@ class CWWownero extends Wownero {
   }
 
   TransactionPriority getDefaultTransactionPriority() {
-    return MoneroTransactionPriority.slow;
+    return WowneroTransactionPriority.slow;
   }
 
   TransactionPriority? deserializeMoneroTransactionPriority({int? raw}) {
-    return MoneroTransactionPriority.deserialize(raw: raw);
+    return WowneroTransactionPriority.deserialize(raw: raw);
   }
 
   List<TransactionPriority> getTransactionPriorities() {
-    return MoneroTransactionPriority.all;
+    return WowneroTransactionPriority.all;
   }
 
   List<String> getWowneroWordList(String language, {int seedWordsLength = 14}) {
@@ -251,7 +251,7 @@ class CWWownero extends Wownero {
                 isParsedAddress: out.isParsedAddress,
                 formattedCryptoAmount: out.formattedCryptoAmount))
             .toList(),
-        priority: priority as MoneroTransactionPriority);
+        priority: priority as WowneroTransactionPriority);
   }
 
   String formatterWowneroAmountToString({int? amount}) {

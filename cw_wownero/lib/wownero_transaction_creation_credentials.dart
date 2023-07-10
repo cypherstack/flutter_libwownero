@@ -5,5 +5,5 @@ class WowneroTransactionCreationCredentials {
   WowneroTransactionCreationCredentials({this.outputs, this.priority});
 
   final List<OutputInfo>? outputs;
-  final MoneroTransactionPriority? priority;
+  final WowneroTransactionPriority? priority;
 }

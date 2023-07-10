@@ -3,40 +3,40 @@ import 'package:wow_cw_core/enumerable_item.dart';
 import 'package:wow_cw_core/transaction_priority.dart';
 import 'package:wow_cw_core/wallet_type.dart';
 
-class MoneroTransactionPriority extends TransactionPriority {
-  const MoneroTransactionPriority({String? title, int? raw})
+class WowneroTransactionPriority extends TransactionPriority {
+  const WowneroTransactionPriority({String? title, int? raw})
       : super(title: title, raw: raw);
 
   static const all = [
-    MoneroTransactionPriority.slow,
-    MoneroTransactionPriority.regular,
-    MoneroTransactionPriority.medium,
-    MoneroTransactionPriority.fast,
-    MoneroTransactionPriority.fastest
+    WowneroTransactionPriority.slow,
+    WowneroTransactionPriority.regular,
+    WowneroTransactionPriority.medium,
+    WowneroTransactionPriority.fast,
+    WowneroTransactionPriority.fastest
   ];
-  static const slow = MoneroTransactionPriority(title: 'Slow', raw: 0);
-  static const regular = MoneroTransactionPriority(title: 'Regular', raw: 1);
-  static const medium = MoneroTransactionPriority(title: 'Medium', raw: 2);
-  static const fast = MoneroTransactionPriority(title: 'Fast', raw: 3);
-  static const fastest = MoneroTransactionPriority(title: 'Fastest', raw: 4);
+  static const slow = WowneroTransactionPriority(title: 'Slow', raw: 0);
+  static const regular = WowneroTransactionPriority(title: 'Regular', raw: 1);
+  static const medium = WowneroTransactionPriority(title: 'Medium', raw: 2);
+  static const fast = WowneroTransactionPriority(title: 'Fast', raw: 3);
+  static const fastest = WowneroTransactionPriority(title: 'Fastest', raw: 4);
   static const standard = slow;
 
-  static List<MoneroTransactionPriority> forWalletType(WalletType type) {
+  static List<WowneroTransactionPriority> forWalletType(WalletType type) {
     switch (type) {
       case WalletType.monero:
-        return MoneroTransactionPriority.all;
+        return WowneroTransactionPriority.all;
       case WalletType.bitcoin:
         return [
-          MoneroTransactionPriority.slow,
-          MoneroTransactionPriority.regular,
-          MoneroTransactionPriority.fast
+          WowneroTransactionPriority.slow,
+          WowneroTransactionPriority.regular,
+          WowneroTransactionPriority.fast
         ];
       default:
         return [];
     }
   }
 
-  static MoneroTransactionPriority? deserialize({int? raw}) {
+  static WowneroTransactionPriority? deserialize({int? raw}) {
     switch (raw) {
       case 0:
         return slow;
@@ -56,15 +56,15 @@ class MoneroTransactionPriority extends TransactionPriority {
   @override
   String toString() {
     switch (this) {
-      case MoneroTransactionPriority.slow:
+      case WowneroTransactionPriority.slow:
         return 'Slow'; // S.current.transaction_priority_slow;
-      case MoneroTransactionPriority.regular:
+      case WowneroTransactionPriority.regular:
         return 'Regular'; // S.current.transaction_priority_regular;
-      case MoneroTransactionPriority.medium:
+      case WowneroTransactionPriority.medium:
         return 'Medium'; // S.current.transaction_priority_medium;
-      case MoneroTransactionPriority.fast:
+      case WowneroTransactionPriority.fast:
         return 'Fast'; // S.current.transaction_priority_fast;
-      case MoneroTransactionPriority.fastest:
+      case WowneroTransactionPriority.fastest:
         return 'Fastest'; // S.current.transaction_priority_fastest;
       default:
         return '';

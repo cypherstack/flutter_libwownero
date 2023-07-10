@@ -233,17 +233,17 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   int calculateEstimatedFee(TransactionPriority priority, int amount) {
     // FIXME: hardcoded value;
 
-    if (priority is MoneroTransactionPriority) {
+    if (priority is WowneroTransactionPriority) {
       switch (priority) {
-        case MoneroTransactionPriority.slow:
+        case WowneroTransactionPriority.slow:
           return 24590000;
-        case MoneroTransactionPriority.regular:
+        case WowneroTransactionPriority.regular:
           return 123050000;
-        case MoneroTransactionPriority.medium:
+        case WowneroTransactionPriority.medium:
           return 245029999;
-        case MoneroTransactionPriority.fast:
+        case WowneroTransactionPriority.fast:
           return 614530000;
-        case MoneroTransactionPriority.fastest:
+        case WowneroTransactionPriority.fastest:
           return 26021600000;
       }
     }
