@@ -48,7 +48,7 @@ class WalletInfo extends HiveObject {
         yatLastUsedAddressRaw);
   }
 
-  static const typeId = 4;
+  static const typeId = 69;
   static const boxName = 'WowneroWalletInfo';
 
   @HiveField(0)
