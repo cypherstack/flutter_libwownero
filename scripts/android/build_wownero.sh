@@ -2,15 +2,18 @@
 
 . ./config.sh
 
-WOWNERO_VERSION=fix-armv7a-compile
+WOWNERO_URL="https://git.wownero.com/wownero/wownero.git"
+WOWNERO_VERSION=v0.11.0.1
+WOWNERO_SHA_HEAD="a21819cc22587e16af00e2c3d8f70156c11310a0"
 WOWNERO_SRC_DIR=${WORKDIR}/wownero
-WOWNERO_SHA_HEAD="373b8842c6075c54cc4904b147f1c86daf7cb60d"
 
-git clone https://git.wownero.com/wownero/wownero.git ${WOWNERO_SRC_DIR} --branch ${WOWNERO_VERSION}
+echo "Cloning wownero from - $WOWNERO_URL to - $WOWNERO_SRC_DIR"
+git clone ${WOWNERO_URL} ${WOWNERO_SRC_DIR} --branch ${WOWNERO_VERSION}
 cd $WOWNERO_SRC_DIR
 git reset --hard $WOWNERO_SHA_HEAD
 git submodule init
 git submodule update
+git apply --stat --apply ${CW_ROOT}/patches/wownero/refresh_thread.patch
 
 for arch in "aarch" "aarch64" "i686" "x86_64"
 do
@@ -49,7 +52,7 @@ case $arch in
 		TAG="android-x86"
 		ARCH="i686"
 		ARCH_ABI="x86";;
-	"x86_64"	)  
+	"x86_64"	)
 		CLANG=x86_64-linux-androideabi-clang
  		CXXLANG=x86_64-linux-androideabi-clang++
 		BUILD_64=ON
