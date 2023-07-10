@@ -6,9 +6,9 @@ import 'package:wow_cw_core/wallet_type.dart';
 
 part 'wallet_info.g.dart';
 
-@HiveType(typeId: WalletInfo.typeId)
-class WalletInfo extends HiveObject {
-  WalletInfo(
+@HiveType(typeId: WowneroWalletInfo.typeId)
+class WowneroWalletInfo extends HiveObject {
+  WowneroWalletInfo(
       this.id,
       this.name,
       this.type,
@@ -22,7 +22,7 @@ class WalletInfo extends HiveObject {
       this.yatLastUsedAddressRaw)
       : _yatLastUsedAddressController = StreamController<String?>.broadcast();
 
-  factory WalletInfo.external(
+  factory WowneroWalletInfo.external(
       {required String id,
       required String name,
       required WalletType type,
@@ -34,7 +34,7 @@ class WalletInfo extends HiveObject {
       required String address,
       String yatEid = '',
       String yatLastUsedAddressRaw = ''}) {
-    return WalletInfo(
+    return WowneroWalletInfo(
         id,
         name,
         type,
