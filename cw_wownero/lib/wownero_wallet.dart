@@ -49,8 +49,8 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
     walletAddresses = WowneroWalletAddresses(walletInfo);
     _onAccountChangeReaction =
         reaction((_) => walletAddresses.account, (Account? account) {
-      balance = ObservableMap<CryptoCurrency?, WowneroBalance>.of(<
-          CryptoCurrency?, WowneroBalance>{
+      balance = ObservableMap<CryptoCurrency?,
+          WowneroBalance>.of(<CryptoCurrency?, WowneroBalance>{
         currency: WowneroBalance(
             fullBalance:
                 wownero_wallet.getFullBalance(accountIndex: account!.id),
@@ -92,8 +92,8 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
 
   Future<void> init() async {
     await walletAddresses.init();
-    balance = ObservableMap<CryptoCurrency?, WowneroBalance>.of(<
-        CryptoCurrency?, WowneroBalance>{
+    balance = ObservableMap<CryptoCurrency?,
+        WowneroBalance>.of(<CryptoCurrency?, WowneroBalance>{
       currency: WowneroBalance(
           fullBalance: wownero_wallet.getFullBalance(
               accountIndex: walletAddresses.account!.id),
