@@ -7,7 +7,7 @@ class WowneroTransactionPriority extends TransactionPriority {
   const WowneroTransactionPriority({String? title, int? raw})
       : super(title: title, raw: raw);
 
-  static const List<TransactionPriority> all = [
+  static const List<WowneroTransactionPriority> all = [
     WowneroTransactionPriority.slow,
     WowneroTransactionPriority.regular,
     WowneroTransactionPriority.medium,

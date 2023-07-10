@@ -230,7 +230,7 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   }
 
   @override
-  int calculateEstimatedFee(WowneroTransactionPriority priority, int amount) {
+  int calculateEstimatedFee(TransactionPriority priority, int amount) {
     // FIXME: hardcoded value;
 
     if (priority is WowneroTransactionPriority) {
