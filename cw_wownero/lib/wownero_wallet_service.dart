@@ -13,7 +13,7 @@ import 'package:wow_cw_core/wallet_info.dart';
 import 'package:wow_cw_core/wallet_service.dart';
 import 'package:wow_cw_core/wallet_type.dart';
 
-class WowneroNewWalletCredentials extends WalletCredentials {
+class WowneroNewWalletCredentials extends WowneroWalletCredentials {
   WowneroNewWalletCredentials(
       {String? name, String? password, this.language, int seedWordsLength = 14})
       : super(name: name, password: password);
@@ -22,7 +22,7 @@ class WowneroNewWalletCredentials extends WalletCredentials {
   final int seedWordsLength = 14;
 }
 
-class WowneroRestoreWalletFromSeedCredentials extends WalletCredentials {
+class WowneroRestoreWalletFromSeedCredentials extends WowneroWalletCredentials {
   WowneroRestoreWalletFromSeedCredentials(
       {String? name, String? password, int? height, this.mnemonic})
       : super(name: name, password: password, height: height);
@@ -35,7 +35,7 @@ class WowneroWalletLoadingException implements Exception {
   String toString() => 'Failure to load the wallet.';
 }
 
-class WowneroRestoreWalletFromKeysCredentials extends WalletCredentials {
+class WowneroRestoreWalletFromKeysCredentials extends WowneroWalletCredentials {
   WowneroRestoreWalletFromKeysCredentials(
       {String? name,
       String? password,
@@ -58,7 +58,7 @@ class WowneroWalletService extends WalletService<
     WowneroRestoreWalletFromKeysCredentials> {
   WowneroWalletService(this.walletInfoSource);
 
-  final Box<WalletInfo> walletInfoSource;
+  final Box<WowneroWalletInfo> walletInfoSource;
 
   static bool walletFilesExist(String path) =>
       !File(path).existsSync() && !File('$path.keys').existsSync();

@@ -3,7 +3,7 @@ import 'package:wow_cw_core/wallet_addresses.dart';
 import 'package:wow_cw_core/wallet_info.dart';
 
 abstract class WalletAddressesWithAccount<T> extends WalletAddresses {
-  WalletAddressesWithAccount(WalletInfo walletInfo) : super(walletInfo);
+  WalletAddressesWithAccount(WowneroWalletInfo walletInfo) : super(walletInfo);
 
   T get account;
 

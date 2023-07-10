@@ -5,7 +5,7 @@ abstract class WalletAddresses {
     addressesMap = {};
   }
 
-  final WalletInfo walletInfo;
+  final WowneroWalletInfo walletInfo;
 
   String? get address;
 

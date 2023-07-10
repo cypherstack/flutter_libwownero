@@ -128,7 +128,7 @@ abstract class Wownero {
   void setCurrentAccount(Object wallet, int id, String label);
   void onStartup();
   int? getTransactionInfoAccountId(TransactionInfo tx);
-  WowneroWalletService createWowneroWalletService(Box<WalletInfo> walletInfoSource);
+  WowneroWalletService createWowneroWalletService(Box<WowneroWalletInfo> walletInfoSource);
 }
 
 abstract class WowneroSubaddressList {

@@ -167,7 +167,7 @@ class CWWownero extends Wownero {
     return WowneroTransactionPriority.deserialize(raw: raw);
   }
 
-  List<TransactionPriority> getTransactionPriorities() {
+  List<WowneroTransactionPriority> getTransactionPriorities() {
     return WowneroTransactionPriority.all;
   }
 
@@ -287,7 +287,7 @@ class CWWownero extends Wownero {
     return wowneroTransactionInfo.accountIndex;
   }
 
-  WowneroWalletService createWowneroWalletService(Box<WalletInfo> walletInfoSource) {
+  WowneroWalletService createWowneroWalletService(Box<WowneroWalletInfo> walletInfoSource) {
     return WowneroWalletService(walletInfoSource);
   }
 

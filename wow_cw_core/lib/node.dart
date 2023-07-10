@@ -12,9 +12,9 @@ part 'node.g.dart';
 Uri? createUriFromElectrumAddress(String? address) =>
     Uri.tryParse('tcp://$address');
 
-@HiveType(typeId: Node.typeId)
-class Node extends HiveObject with Keyable {
-  Node(
+@HiveType(typeId: WowneroNode.typeId)
+class WowneroNode /*extends HiveObject*/ with Keyable {
+  WowneroNode(
       {required String uri,
       required WalletType type,
       this.login,
@@ -24,7 +24,7 @@ class Node extends HiveObject with Keyable {
     this.type = type;
   }
 
-  Node.fromMap(Map map)
+  WowneroNode.fromMap(Map map)
       : uriRaw = map['uri'] as String? ?? '',
         login = map['login'] as String?,
         password = map['password'] as String?,
@@ -70,7 +70,7 @@ class Node extends HiveObject with Keyable {
 
   @override
   dynamic get keyIndex {
-    _keyIndex ??= key;
+    _keyIndex ??= 0;
     return _keyIndex;
   }
 

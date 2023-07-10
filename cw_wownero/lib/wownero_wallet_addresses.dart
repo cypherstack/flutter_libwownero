@@ -12,7 +12,7 @@ class WowneroWalletAddresses = WowneroWalletAddressesBase
     with _$WowneroWalletAddresses;
 
 abstract class WowneroWalletAddressesBase extends WalletAddresses with Store {
-  WowneroWalletAddressesBase(WalletInfo walletInfo) : super(walletInfo) {
+  WowneroWalletAddressesBase(WowneroWalletInfo walletInfo) : super(walletInfo) {
     accountList = WowneroAccountList();
     subaddressList = WowneroSubaddressList();
   }

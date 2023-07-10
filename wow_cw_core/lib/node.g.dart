@@ -6,17 +6,17 @@ part of 'node.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class NodeAdapter extends TypeAdapter<Node> {
+class NodeAdapter extends TypeAdapter<WowneroNode> {
   @override
   final int typeId = 11;
 
   @override
-  Node read(BinaryReader reader) {
+  WowneroNode read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Node(
+    return WowneroNode(
       login: fields[1] as String?,
       password: fields[2] as String?,
       useSSL: fields[4] as bool?,
@@ -26,7 +26,7 @@ class NodeAdapter extends TypeAdapter<Node> {
   }
 
   @override
-  void write(BinaryWriter writer, Node obj) {
+  void write(BinaryWriter writer, WowneroNode obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)

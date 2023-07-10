@@ -37,7 +37,7 @@ class WowneroWallet = WowneroWalletBase with _$WowneroWallet;
 
 abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
     WowneroTransactionHistory, WowneroTransactionInfo> with Store {
-  WowneroWalletBase({required WalletInfo walletInfo}) : super(walletInfo) {
+  WowneroWalletBase({required WowneroWalletInfo walletInfo}) : super(walletInfo) {
     transactionHistory = WowneroTransactionHistory();
     balance = ObservableMap<CryptoCurrency?, WowneroBalance>.of({
       CryptoCurrency.wow: WowneroBalance(
@@ -124,7 +124,7 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   }
 
   @override
-  Future<void> connectToNode({required Node node}) async {
+  Future<void> connectToNode({required WowneroNode node}) async {
     try {
       syncStatus = ConnectingSyncStatus();
       await wownero_wallet.setupNode(
@@ -230,7 +230,7 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   }
 
   @override
-  int calculateEstimatedFee(TransactionPriority priority, int amount) {
+  int calculateEstimatedFee(WowneroTransactionPriority priority, int amount) {
     // FIXME: hardcoded value;
 
     if (priority is WowneroTransactionPriority) {

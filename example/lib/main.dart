@@ -47,8 +47,8 @@ void main() async {
   Hive.registerAdapter(NodeAdapter());
   // }
 
-  // if (!Hive.isAdapterRegistered(WalletInfo.typeId)) {
-  Hive.registerAdapter(WalletInfoAdapter());
+  // if (!Hive.isAdapterRegistered(WowneroWalletInfo.typeId)) {
+  Hive.registerAdapter(WowneroWalletInfo());
   // }
 
   // if (!Hive.isAdapterRegistered(WalletType.)) {
@@ -60,13 +60,13 @@ void main() async {
   // }
 
   wownero.onStartup();
-  final _walletInfoSource = await Hive.openBox<WalletInfo>(WalletInfo.boxName);
+  final _walletInfoSource = await Hive.openBox<WowneroWalletInfo>(WowneroWalletInfo.boxName);
   walletService = wownero.createWowneroWalletService(_walletInfoSource);
   storage = FlutterSecureStorage();
   prefs = await SharedPreferences.getInstance();
   keysStorage = KeyService(storage!);
-  WalletInfo walletInfo;
-  late WalletCredentials credentials;
+  WowneroWalletInfo walletInfo;
+  late WowneroWalletCredentials credentials;
   try {
     // if (name?.isEmpty ?? true) {
     // name = await generateName();
@@ -85,7 +85,7 @@ void main() async {
       // height: 2580000,
       mnemonic: "",
     );
-    walletInfo = WalletInfo.external(
+    walletInfo = WowneroWalletInfo.external(
         id: WalletBase.idFor(name, WalletType.wownero),
         name: name,
         type: WalletType.wownero,
@@ -126,13 +126,13 @@ void main() async {
   //     "${walletBase!.id} walletinfo: ${toStringForinfo(walletBase!.walletInfo)} type: ${walletBase!.type} balance: "
   //     "${walletBase!.balance.entries.first.value.available} currency: ${walletBase!.currency}");
   await walletBase?.connectToNode(
-      node: Node(uri: "eu-west-2.wow.xmr.pm:34568", type: WalletType.wownero));
+      node: WowneroNode(uri: "eu-west-2.wow.xmr.pm:34568", type: WalletType.wownero));
   walletBase!.rescan(height: credentials.height);
   walletBase!.getNodeHeight();
   runApp(MyApp());
 }
 
-String toStringForinfo(WalletInfo info) {
+String toStringForinfo(WowneroWalletInfo info) {
   return "id: ${info.id}  name: ${info.name} type: ${info.type} recovery: ${info.isRecovery}"
       " restoreheight: ${info.restoreHeight} timestamp: ${info.timestamp} dirPath: ${info.dirPath} "
       "path: ${info.path} address: ${info.address} addresses: ${info.addresses}";

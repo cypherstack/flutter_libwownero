@@ -6,17 +6,17 @@ part of 'wallet_info.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class WalletInfoAdapter extends TypeAdapter<WalletInfo> {
+class WalletInfoAdapter extends TypeAdapter<WowneroWalletInfo> {
   @override
   final int typeId = 14;
 
   @override
-  WalletInfo read(BinaryReader reader) {
+  WowneroWalletInfo read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return WalletInfo(
+    return WowneroWalletInfo(
       fields[0] as String?,
       fields[1] as String?,
       fields[2] as WalletType?,
@@ -32,7 +32,7 @@ class WalletInfoAdapter extends TypeAdapter<WalletInfo> {
   }
 
   @override
-  void write(BinaryWriter writer, WalletInfo obj) {
+  void write(BinaryWriter writer, WowneroWalletInfo obj) {
     writer
       ..writeByte(12)
       ..writeByte(0)

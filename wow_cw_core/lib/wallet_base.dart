@@ -22,7 +22,7 @@ abstract class WalletBase<
   static String idFor(String name, WalletType type) =>
       walletTypeToString(type).toLowerCase() + '_' + name;
 
-  WalletInfo walletInfo;
+  WowneroWalletInfo walletInfo;
 
   WalletType? get type => walletInfo.type;
 
@@ -50,7 +50,7 @@ abstract class WalletBase<
 
   HistoryType? transactionHistory;
 
-  Future<void> connectToNode({required Node node});
+  Future<void> connectToNode({required WowneroNode node});
 
   Future<void> startSync();
 

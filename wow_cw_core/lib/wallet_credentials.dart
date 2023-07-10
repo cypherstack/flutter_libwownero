@@ -6,5 +6,5 @@ abstract class WowneroWalletCredentials {
   final String? name;
   final int? height;
   String? password;
-  WalletInfo? walletInfo;
+  WowneroWalletInfo? walletInfo;
 }
