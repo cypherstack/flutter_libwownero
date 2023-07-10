@@ -32,7 +32,7 @@ esac
 
 LIB_DIR=${CW_EXRTERNAL_DIR}/${ABI}/lib
 INCLUDE_DIR=${CW_EXRTERNAL_DIR}/${ABI}/include
-$LIBUNBOUND_PATH=${PREFIX}/lib/libunbound.a
+LIBUNBOUND_PATH=${PREFIX}/lib/libunbound.a
 
 mkdir -p $LIB_DIR
 mkdir -p $INCLUDE_DIR
