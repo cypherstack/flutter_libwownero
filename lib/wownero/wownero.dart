@@ -103,7 +103,7 @@ abstract class Wownero {
   List<TransactionPriority> getTransactionPriorities();
   List<String> getWowneroWordList(String language, {int seedWordsLength = 14});
 
-  WalletCredentials createWowneroRestoreWalletFromKeysCredentials(
+  WowneroWalletCredentials createWowneroRestoreWalletFromKeysCredentials(
       {String name,
       String spendKey,
       String viewKey,
@@ -111,9 +111,9 @@ abstract class Wownero {
       String password,
       String language,
       int height});
-  WalletCredentials createWowneroRestoreWalletFromSeedCredentials(
+  WowneroWalletCredentials createWowneroRestoreWalletFromSeedCredentials(
       {String name, String password, int height, String mnemonic});
-  WalletCredentials createWowneroNewWalletCredentials(
+  WowneroWalletCredentials createWowneroNewWalletCredentials(
       {String name,
       String password,
       String language,
@@ -128,7 +128,7 @@ abstract class Wownero {
   void setCurrentAccount(Object wallet, int id, String label);
   void onStartup();
   int? getTransactionInfoAccountId(TransactionInfo tx);
-  WalletService createWowneroWalletService(Box<WalletInfo> walletInfoSource);
+  WowneroWalletService createWowneroWalletService(Box<WalletInfo> walletInfoSource);
 }
 
 abstract class WowneroSubaddressList {

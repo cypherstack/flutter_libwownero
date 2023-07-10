@@ -190,7 +190,7 @@ class CWWownero extends Wownero {
     }
   }
 
-  WalletCredentials createWowneroRestoreWalletFromKeysCredentials(
+  WowneroWalletCredentials createWowneroRestoreWalletFromKeysCredentials(
       {String? name,
       String? spendKey,
       String? viewKey,
@@ -208,13 +208,13 @@ class CWWownero extends Wownero {
         height: height);
   }
 
-  WalletCredentials createWowneroRestoreWalletFromSeedCredentials(
+  WowneroWalletCredentials createWowneroRestoreWalletFromSeedCredentials(
       {String? name, String? password, int? height, String? mnemonic}) {
     return WowneroRestoreWalletFromSeedCredentials(
         name: name, password: password, height: height, mnemonic: mnemonic);
   }
 
-  WalletCredentials createWowneroNewWalletCredentials(
+  WowneroWalletCredentials createWowneroNewWalletCredentials(
       {String? name,
       String? password,
       String? language,
@@ -287,7 +287,7 @@ class CWWownero extends Wownero {
     return wowneroTransactionInfo.accountIndex;
   }
 
-  WalletService createWowneroWalletService(Box<WalletInfo> walletInfoSource) {
+  WowneroWalletService createWowneroWalletService(Box<WalletInfo> walletInfoSource) {
     return WowneroWalletService(walletInfoSource);
   }
 

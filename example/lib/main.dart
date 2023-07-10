@@ -28,7 +28,7 @@ import 'package:wow_cw_core/wallet_service.dart';
 import 'package:wow_cw_core/wallet_type.dart';
 
 FlutterSecureStorage? storage;
-WalletService? walletService;
+WowneroWalletService? walletService;
 SharedPreferences? prefs;
 KeyService? keysStorage;
 WowneroWalletBase? walletBase;

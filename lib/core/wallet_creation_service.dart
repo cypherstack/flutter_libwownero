@@ -9,7 +9,7 @@ import 'package:wow_cw_core/wallet_type.dart';
 import 'key_service.dart';
 
 class WalletCreationService {
-  WalletService? walletService;
+  WowneroWalletService? walletService;
   WalletCreationService(
       {this.secureStorage,
       this.keyService,
@@ -24,7 +24,7 @@ class WalletCreationService {
   final dynamic secureStorage;
   final SharedPreferences? sharedPreferences;
   final KeyService? keyService;
-  WalletService? _service;
+  WowneroWalletService? _service;
 
   void changeWalletType() {
     this.type = WalletType.monero;
