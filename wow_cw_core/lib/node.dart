@@ -32,7 +32,7 @@ class Node extends HiveObject with Keyable {
         useSSL = map['useSSL'] as bool?;
 
   static const typeId = 1;
-  static const boxName = 'Nodes';
+  static const boxName = 'WowneroNodes';
 
   @HiveField(0)
   String? uriRaw;

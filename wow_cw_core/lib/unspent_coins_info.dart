@@ -12,7 +12,7 @@ class UnspentCoinsInfo extends HiveObject {
     this.note});
 
   static const typeId = 9;
-  static const boxName = 'Unspent';
+  static const boxName = 'WowneroUnspent';
   static const boxKey = 'unspentBoxKey';
 
   @HiveField(0)

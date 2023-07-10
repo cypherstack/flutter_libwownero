@@ -49,7 +49,7 @@ class WalletInfo extends HiveObject {
   }
 
   static const typeId = 4;
-  static const boxName = 'WalletInfo';
+  static const boxName = 'WowneroWalletInfo';
 
   @HiveField(0)
   String? id;
