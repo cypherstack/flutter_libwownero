@@ -1,8 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
-import 'package:wow_cw_core/wallet_type.dart';
 
 part 'wallet_info.g.dart';
 
@@ -58,48 +54,25 @@ class WowneroWalletInfo extends HiveObject {
   String? name;
 
   @HiveField(2)
-  WalletType? type;
-
-  @HiveField(3)
   bool? isRecovery;
 
-  @HiveField(4)
+  @HiveField(3)
   int? restoreHeight;
 
-  @HiveField(5)
+  @HiveField(4)
   int? timestamp;
 
-  @HiveField(6)
+  @HiveField(5)
   String? dirPath;
 
-  @HiveField(7)
+  @HiveField(6)
   String? path;
 
-  @HiveField(8)
+  @HiveField(7)
   String? address;
 
-  @HiveField(10)
+  @HiveField(8)
   Map<String, String>? addresses;
 
-  @HiveField(11)
-  String? yatEid;
-
-  @HiveField(12)
-  String? yatLastUsedAddressRaw;
-
-  String? get yatLastUsedAddress => yatLastUsedAddressRaw;
-
-  set yatLastUsedAddress(String? address) {
-    yatLastUsedAddressRaw = address;
-    _yatLastUsedAddressController.add(address);
-  }
-
-  String get yatEmojiId => yatEid ?? '';
-
   DateTime get date => DateTime.fromMillisecondsSinceEpoch(timestamp!);
-
-  Stream<String?> get yatLastUsedAddressStream =>
-      _yatLastUsedAddressController.stream;
-
-  StreamController<String?> _yatLastUsedAddressController;
 }

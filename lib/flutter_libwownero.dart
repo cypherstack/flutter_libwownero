@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-class FlutterLibmonero {
+class FlutterLibwownero {
   static const MethodChannel _channel =
       const MethodChannel('flutter_libwownero');
 

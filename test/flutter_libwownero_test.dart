@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_libwownero/flutter_libwownero.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('flutter_libwownero');
@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await FlutterLibmonero.platformVersion, '42');
+    expect(await FlutterLibwownero.platformVersion, '42');
   });
 }

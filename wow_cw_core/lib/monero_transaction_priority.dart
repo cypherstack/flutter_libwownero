@@ -1,7 +1,5 @@
 //import 'package:flutter_libmonero/generated/i18n.dart';
-import 'package:wow_cw_core/enumerable_item.dart';
 import 'package:wow_cw_core/transaction_priority.dart';
-import 'package:wow_cw_core/wallet_type.dart';
 
 class WowneroTransactionPriority extends TransactionPriority {
   const WowneroTransactionPriority({String? title, int? raw})
@@ -21,20 +19,8 @@ class WowneroTransactionPriority extends TransactionPriority {
   static const fastest = WowneroTransactionPriority(title: 'Fastest', raw: 4);
   static const standard = slow;
 
-  static List<WowneroTransactionPriority> forWalletType(WalletType type) {
-    switch (type) {
-      case WalletType.monero:
-        return WowneroTransactionPriority.all;
-      case WalletType.bitcoin:
-        return [
-          WowneroTransactionPriority.slow,
-          WowneroTransactionPriority.regular,
-          WowneroTransactionPriority.fast
-        ];
-      default:
-        return [];
-    }
-  }
+  static List<WowneroTransactionPriority> get forWalletType =>
+      WowneroTransactionPriority.all;
 
   static WowneroTransactionPriority? deserialize({int? raw}) {
     switch (raw) {

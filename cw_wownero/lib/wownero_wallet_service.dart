@@ -11,7 +11,6 @@ import 'package:wow_cw_core/wallet_base.dart';
 import 'package:wow_cw_core/wallet_credentials.dart';
 import 'package:wow_cw_core/wallet_info.dart';
 import 'package:wow_cw_core/wallet_service.dart';
-import 'package:wow_cw_core/wallet_type.dart';
 
 class WowneroNewWalletCredentials extends WowneroWalletCredentials {
   WowneroNewWalletCredentials(
@@ -64,14 +63,10 @@ class WowneroWalletService extends WalletService<
       !File(path).existsSync() && !File('$path.keys').existsSync();
 
   @override
-  WalletType getType() => WalletType.wownero;
-
-  @override
   Future<WowneroWallet> create(WowneroNewWalletCredentials credentials,
       {int seedWordsLength = 14}) async {
     try {
-      final path =
-          await pathForWallet(name: credentials.name!, type: getType());
+      final path = await pathForWallet(name: credentials.name!);
       await wownero_wallet_manager.createWallet(
           path: path,
           password: credentials.password,
@@ -91,7 +86,7 @@ class WowneroWalletService extends WalletService<
   @override
   Future<bool> isWalletExit(String name) async {
     try {
-      final path = await pathForWallet(name: name, type: getType());
+      final path = await pathForWallet(name: name);
       return wownero_wallet_manager.isWalletExist(path: path);
     } catch (e) {
       // TODO: Implement Exception for wallet list service.
@@ -103,7 +98,7 @@ class WowneroWalletService extends WalletService<
   @override
   Future<WowneroWallet> openWallet(String name, String password) async {
     try {
-      final path = await pathForWallet(name: name, type: getType());
+      final path = await pathForWallet(name: name);
 
       if (walletFilesExist(path)) {
         await repairOldAndroidWallet(name);
@@ -111,8 +106,8 @@ class WowneroWalletService extends WalletService<
 
       await wownero_wallet_manager
           .openWalletAsync({'path': path, 'password': password});
-      final walletInfo = walletInfoSource.values.firstWhereOrNull(
-          (info) => info.id == WalletBase.idFor(name, getType()))!;
+      final walletInfo = walletInfoSource.values
+          .firstWhereOrNull((info) => info.id == WalletBase.idFor(name))!;
       final wallet = WowneroWallet(walletInfo: walletInfo);
       final isValid = wallet.walletAddresses.validate();
 
@@ -145,7 +140,7 @@ class WowneroWalletService extends WalletService<
 
   @override
   Future<void> remove(String wallet) async {
-    final path = await pathForWalletDir(name: wallet, type: getType());
+    final path = await pathForWalletDir(name: wallet);
     final file = Directory(path);
     final isExist = file.existsSync();
 
@@ -158,8 +153,7 @@ class WowneroWalletService extends WalletService<
   Future<WowneroWallet> restoreFromKeys(
       WowneroRestoreWalletFromKeysCredentials credentials) async {
     try {
-      final path =
-          await pathForWallet(name: credentials.name!, type: getType());
+      final path = await pathForWallet(name: credentials.name!);
       await wownero_wallet_manager.restoreFromKeys(
           path: path,
           password: credentials.password,
@@ -184,8 +178,7 @@ class WowneroWalletService extends WalletService<
   Future<WowneroWallet> restoreFromSeed(
       WowneroRestoreWalletFromSeedCredentials credentials) async {
     try {
-      final path =
-          await pathForWallet(name: credentials.name!, type: getType());
+      final path = await pathForWallet(name: credentials.name!);
       await wownero_wallet_manager.restoreFromSeed(
           path: path,
           password: credentials.password,
@@ -227,8 +220,7 @@ class WowneroWalletService extends WalletService<
         return;
       }
 
-      final newWalletDirPath =
-          await pathForWalletDir(name: name, type: getType());
+      final newWalletDirPath = await pathForWalletDir(name: name);
 
       dir.listSync().forEach((f) {
         final file = File(f.path);

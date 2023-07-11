@@ -32,7 +32,7 @@ esac
 
 LIB_DIR=${CW_EXRTERNAL_DIR}/${ABI}/lib
 INCLUDE_DIR=${CW_EXRTERNAL_DIR}/${ABI}/include
-LIBANBOUND_PATH=${PREFIX}/lib/libunbound.a
+LIBUNBOUND_PATH=${PREFIX}/lib/libunbound.a
 
 mkdir -p $LIB_DIR
 mkdir -p $INCLUDE_DIR
@@ -40,10 +40,13 @@ mkdir -p $INCLUDE_DIR
 cp -r ${PREFIX}/lib/* $LIB_DIR
 cp -r ${PREFIX}/include/* $INCLUDE_DIR
 
+if [ -f "$LIBUNBOUND_PATH" ]; then
+ cp $LIBUNBOUND_PATH ${LIB_DIR}/wownero
+fi
+
 done
 
 mkdir -p ${CW_WOWNERO_EXTERNAL_DIR}/include
 
-cp $CW_EXRTERNAL_DIR/x86/include/monero/wallet2_api.h ${CW_MONERO_EXTERNAL_DIR}/include
 cp $CW_EXRTERNAL_DIR/x86/include/wownero/wallet2_api.h ${CW_WOWNERO_EXTERNAL_DIR}/include
 cp -R $CW_EXRTERNAL_DIR/x86/include/wownero_seed ${CW_WOWNERO_EXTERNAL_DIR}/include
