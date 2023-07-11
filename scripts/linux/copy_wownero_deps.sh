@@ -1,7 +1,6 @@
 #!/bin/bash
 
 . ./config.sh
-echo $TYPES_OF_BUILD
 
 WORKDIR="$(pwd)/"build
 CW_DIR="$(pwd)"/../../
