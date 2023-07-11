@@ -71,13 +71,13 @@ extern "C"
         }
     };
 
-    struct MoneroWalletListener : Monero::WalletListener
+    struct WowneroWalletListener : Monero::WalletListener
     {
         uint64_t m_height;
         bool m_need_to_refresh;
         bool m_new_transaction;
 
-        MoneroWalletListener()
+        WowneroWalletListener()
         {
             m_height = 0;
             m_need_to_refresh = false;
@@ -192,7 +192,7 @@ extern "C"
 
     Monero::Wallet *m_wallet;
     Monero::TransactionHistory *m_transaction_history;
-    MoneroWalletListener *m_listener;
+    WowneroWalletListener *m_listener;
     Monero::Subaddress *m_subaddress;
     Monero::SubaddressAccount *m_account;
     uint64_t m_last_known_wallet_height;
@@ -856,7 +856,7 @@ extern "C"
              free(m_listener);
         }
 
-        m_listener = new MoneroWalletListener();
+        m_listener = new WowneroWalletListener();
         wow_get_current_wallet()->setListener(m_listener);
     }
 
