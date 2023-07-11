@@ -1,51 +1,40 @@
-import 'dart:async';
-
-import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
-import 'package:wow_cw_core/wallet_type.dart';
 
 part 'wallet_info.g.dart';
 
 @HiveType(typeId: WalletInfo.typeId)
 class WalletInfo extends HiveObject {
   WalletInfo(
-      this.id,
-      this.name,
-      this.type,
-      this.isRecovery,
-      this.restoreHeight,
-      this.timestamp,
-      this.dirPath,
-      this.path,
-      this.address,
-      this.yatEid,
-      this.yatLastUsedAddressRaw)
-      : _yatLastUsedAddressController = StreamController<String?>.broadcast();
+    this.id,
+    this.name,
+    this.isRecovery,
+    this.restoreHeight,
+    this.timestamp,
+    this.dirPath,
+    this.path,
+    this.address,
+  );
 
-  factory WalletInfo.external(
-      {required String id,
-      required String name,
-      required WalletType type,
-      required bool isRecovery,
-      required int restoreHeight,
-      required DateTime date,
-      required String dirPath,
-      required String path,
-      required String address,
-      String yatEid = '',
-      String yatLastUsedAddressRaw = ''}) {
+  factory WalletInfo.external({
+    required String id,
+    required String name,
+    required bool isRecovery,
+    required int restoreHeight,
+    required DateTime date,
+    required String dirPath,
+    required String path,
+    required String address,
+  }) {
     return WalletInfo(
-        id,
-        name,
-        type,
-        isRecovery,
-        restoreHeight,
-        date.millisecondsSinceEpoch,
-        dirPath,
-        path,
-        address,
-        yatEid,
-        yatLastUsedAddressRaw);
+      id,
+      name,
+      isRecovery,
+      restoreHeight,
+      date.millisecondsSinceEpoch,
+      dirPath,
+      path,
+      address,
+    );
   }
 
   static const typeId = 69;
@@ -58,48 +47,25 @@ class WalletInfo extends HiveObject {
   String? name;
 
   @HiveField(2)
-  WalletType? type;
-
-  @HiveField(3)
   bool? isRecovery;
 
-  @HiveField(4)
+  @HiveField(3)
   int? restoreHeight;
 
-  @HiveField(5)
+  @HiveField(4)
   int? timestamp;
 
-  @HiveField(6)
+  @HiveField(5)
   String? dirPath;
 
-  @HiveField(7)
+  @HiveField(6)
   String? path;
 
-  @HiveField(8)
+  @HiveField(7)
   String? address;
 
-  @HiveField(10)
+  @HiveField(8)
   Map<String, String>? addresses;
 
-  @HiveField(11)
-  String? yatEid;
-
-  @HiveField(12)
-  String? yatLastUsedAddressRaw;
-
-  String? get yatLastUsedAddress => yatLastUsedAddressRaw;
-
-  set yatLastUsedAddress(String? address) {
-    yatLastUsedAddressRaw = address;
-    _yatLastUsedAddressController.add(address);
-  }
-
-  String get yatEmojiId => yatEid ?? '';
-
   DateTime get date => DateTime.fromMillisecondsSinceEpoch(timestamp!);
-
-  Stream<String?> get yatLastUsedAddressStream =>
-      _yatLastUsedAddressController.stream;
-
-  StreamController<String?> _yatLastUsedAddressController;
 }

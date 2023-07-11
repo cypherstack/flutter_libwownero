@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:wow_cw_core/pathForWallet.dart';
-import 'package:wow_cw_core/wallet_type.dart';
 
 String backupFileName(String originalPath) {
   final pathParts = originalPath.split('/');
@@ -12,7 +11,7 @@ String backupFileName(String originalPath) {
 }
 
 Future<void> backupWalletFiles(String name) async {
-  final path = await pathForWallet(name: name, type: WalletType.monero);
+  final path = await pathForWallet(name: name);
   final cacheFile = File(path);
   final keysFile = File('$path.keys');
   final addressListFile = File('$path.address.txt');
@@ -34,8 +33,7 @@ Future<void> backupWalletFiles(String name) async {
 }
 
 Future<void> restoreWalletFiles(String name) async {
-  final walletDirPath =
-      await pathForWalletDir(name: name, type: WalletType.monero);
+  final walletDirPath = await pathForWalletDir(name: name);
   final cacheFilePath = '$walletDirPath/$name';
   final keysFilePath = '$walletDirPath/$name.keys';
   final addressListFilePath = '$walletDirPath/$name.address.txt';
@@ -57,8 +55,7 @@ Future<void> restoreWalletFiles(String name) async {
 }
 
 Future<bool> backupWalletFilesExists(String name) async {
-  final walletDirPath =
-      await pathForWalletDir(name: name, type: WalletType.monero);
+  final walletDirPath = await pathForWalletDir(name: name);
   final cacheFilePath = '$walletDirPath/$name';
   final keysFilePath = '$walletDirPath/$name.keys';
   final addressListFilePath = '$walletDirPath/$name.address.txt';
@@ -72,7 +69,7 @@ Future<bool> backupWalletFilesExists(String name) async {
 }
 
 Future<void> removeCache(String name) async {
-  final path = await pathForWallet(name: name, type: WalletType.monero);
+  final path = await pathForWallet(name: name);
   final cacheFile = File(path);
 
   if (cacheFile.existsSync()) {
@@ -87,5 +84,5 @@ Future<void> restoreOrResetWalletFiles(String name) async {
     await restoreWalletFiles(name);
   }
 
-  removeCache(name);
+  await removeCache(name);
 }

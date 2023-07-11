@@ -4,39 +4,29 @@ import 'package:stack_wallet_backup/generate_password.dart';
 import 'package:wow_cw_core/wallet_base.dart';
 import 'package:wow_cw_core/wallet_credentials.dart';
 import 'package:wow_cw_core/wallet_service.dart';
-import 'package:wow_cw_core/wallet_type.dart';
 
 import 'key_service.dart';
 
 class WalletCreationService {
-  WalletService? walletService;
-  WalletCreationService(
-      {this.secureStorage,
-      this.keyService,
-      this.sharedPreferences,
-      this.walletService}) {
-    if (type != null) {
-      changeWalletType();
-    }
-  }
+  WalletCreationService({
+    this.secureStorage,
+    this.keyService,
+    this.sharedPreferences,
+    this.walletService,
+  });
 
-  WalletType type = WalletType.monero;
+  WalletService? walletService;
+
   final dynamic secureStorage;
   final SharedPreferences? sharedPreferences;
   final KeyService? keyService;
-  WalletService? _service;
-
-  void changeWalletType() {
-    this.type = WalletType.monero;
-    _service = walletService;
-  }
 
   Future<WalletBase> create(WalletCredentials credentials) async {
     final password = generatePassword();
     credentials.password = password;
     await keyService!
         .saveWalletPassword(password: password, walletName: credentials.name);
-    return await _service!.create(credentials);
+    return await walletService!.create(credentials);
   }
 
   Future<WalletBase> restoreFromKeys(WalletCredentials credentials) async {
@@ -44,7 +34,7 @@ class WalletCreationService {
     credentials.password = password;
     await keyService!
         .saveWalletPassword(password: password, walletName: credentials.name);
-    return await _service!.restoreFromKeys(credentials);
+    return await walletService!.restoreFromKeys(credentials);
   }
 
   Future<WalletBase> restoreFromSeed(WalletCredentials credentials) async {
@@ -52,6 +42,6 @@ class WalletCreationService {
     credentials.password = password;
     await keyService!
         .saveWalletPassword(password: password, walletName: credentials.name);
-    return await _service!.restoreFromSeed(credentials);
+    return await walletService!.restoreFromSeed(credentials);
   }
 }

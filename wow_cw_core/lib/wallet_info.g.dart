@@ -8,7 +8,7 @@ part of 'wallet_info.dart';
 
 class WalletInfoAdapter extends TypeAdapter<WalletInfo> {
   @override
-  final int typeId = 14;
+  final int typeId = 69;
 
   @override
   WalletInfo read(BinaryReader reader) {
@@ -19,46 +19,37 @@ class WalletInfoAdapter extends TypeAdapter<WalletInfo> {
     return WalletInfo(
       fields[0] as String?,
       fields[1] as String?,
-      fields[2] as WalletType?,
-      fields[3] as bool?,
+      fields[2] as bool?,
+      fields[3] as int?,
       fields[4] as int?,
-      fields[5] as int?,
+      fields[5] as String?,
       fields[6] as String?,
       fields[7] as String?,
-      fields[8] as String?,
-      fields[11] as String?,
-      fields[12] as String?,
-    )..addresses = (fields[10] as Map?)?.cast<String, String>();
+    )..addresses = (fields[8] as Map?)?.cast<String, String>();
   }
 
   @override
   void write(BinaryWriter writer, WalletInfo obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.type)
-      ..writeByte(3)
       ..write(obj.isRecovery)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.restoreHeight)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.timestamp)
-      ..writeByte(6)
+      ..writeByte(5)
       ..write(obj.dirPath)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.path)
-      ..writeByte(8)
+      ..writeByte(7)
       ..write(obj.address)
-      ..writeByte(10)
-      ..write(obj.addresses)
-      ..writeByte(11)
-      ..write(obj.yatEid)
-      ..writeByte(12)
-      ..write(obj.yatLastUsedAddressRaw);
+      ..writeByte(8)
+      ..write(obj.addresses);
   }
 
   @override

@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 import 'package:wow_cw_core/balance.dart';
 import 'package:wow_cw_core/crypto_currency.dart';
-import 'package:wow_cw_core/currency_for_wallet_type.dart';
 import 'package:wow_cw_core/node.dart';
 import 'package:wow_cw_core/pending_transaction.dart';
 import 'package:wow_cw_core/sync_status.dart';
@@ -11,7 +9,6 @@ import 'package:wow_cw_core/transaction_info.dart';
 import 'package:wow_cw_core/transaction_priority.dart';
 import 'package:wow_cw_core/wallet_addresses.dart';
 import 'package:wow_cw_core/wallet_info.dart';
-import 'package:wow_cw_core/wallet_type.dart';
 
 abstract class WalletBase<
     BalanceType extends Balance,
@@ -19,14 +16,11 @@ abstract class WalletBase<
     TransactionType extends TransactionInfo> {
   WalletBase(this.walletInfo);
 
-  static String idFor(String name, WalletType type) =>
-      walletTypeToString(type).toLowerCase() + '_' + name;
+  static String idFor(String name) => '_' + name;
 
   WalletInfo walletInfo;
 
-  WalletType? get type => walletInfo.type;
-
-  CryptoCurrency? get currency => currencyForWalletType(type);
+  CryptoCurrency? get currency => CryptoCurrency.wow;
 
   String? get id => walletInfo.id;
 

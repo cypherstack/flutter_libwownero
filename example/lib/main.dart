@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:core';
 import 'dart:core' as core;
 import 'dart:io';
@@ -20,12 +19,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wow_cw_core/monero_amount_format.dart';
 import 'package:wow_cw_core/node.dart';
 import 'package:wow_cw_core/pending_transaction.dart';
-import 'package:wow_cw_core/unspent_coins_info.dart';
 import 'package:wow_cw_core/wallet_base.dart';
 import 'package:wow_cw_core/wallet_credentials.dart';
 import 'package:wow_cw_core/wallet_info.dart';
 import 'package:wow_cw_core/wallet_service.dart';
-import 'package:wow_cw_core/wallet_type.dart';
 
 FlutterSecureStorage? storage;
 WalletService? walletService;
@@ -43,20 +40,8 @@ void main() async {
   await Hive.close();
   Hive.init(appDir.path);
 
-  // if (!Hive.isAdapterRegistered(Node.typeId)) {
-  Hive.registerAdapter(NodeAdapter());
-  // }
-
   // if (!Hive.isAdapterRegistered(WalletInfo.typeId)) {
   Hive.registerAdapter(WalletInfoAdapter());
-  // }
-
-  // if (!Hive.isAdapterRegistered(WalletType.)) {
-  Hive.registerAdapter(WalletTypeAdapter());
-  // }
-
-  // if (!Hive.isAdapterRegistered(UnspentCoinsInfo.typeId)) {
-  Hive.registerAdapter(UnspentCoinsInfoAdapter());
   // }
 
   wownero.onStartup();
@@ -72,9 +57,8 @@ void main() async {
     // name = await generateName();
     // }
     String name = "namee${Random().nextInt(10000000)}";
-    final dirPath =
-        await pathForWalletDir(name: name, type: WalletType.wownero);
-    final path = await pathForWallet(name: name, type: WalletType.wownero);
+    final dirPath = await pathForWalletDir(name: name);
+    final path = await pathForWallet(name: name);
     credentials =
         // //     creating a new wallet
         // wownero.createWowneroNewWalletCredentials(
@@ -82,13 +66,16 @@ void main() async {
         // restoring a previous wallet
         wownero.createWowneroRestoreWalletFromSeedCredentials(
       name: name,
-      // height: 2580000,
-      mnemonic: "",
+      height: 2580000,
+      mnemonic: "water water water water water "
+          "water water water water water "
+          "water water water water water "
+          "water water water water water "
+          "water water water water water",
     );
     walletInfo = WalletInfo.external(
-        id: WalletBase.idFor(name, WalletType.wownero),
+        id: WalletBase.idFor(name),
         name: name,
-        type: WalletType.wownero,
         isRecovery: false,
         restoreHeight: credentials.height ?? 0,
         date: DateTime.now(),
@@ -103,7 +90,6 @@ void main() async {
       walletService: walletService,
       keyService: keysStorage,
     );
-    _walletCreationService.changeWalletType();
     // To restore from a seed
     final wallet = await
         // _walletCreationService.create(credentials);
@@ -126,25 +112,24 @@ void main() async {
   //     "${walletBase!.id} walletinfo: ${toStringForinfo(walletBase!.walletInfo)} type: ${walletBase!.type} balance: "
   //     "${walletBase!.balance.entries.first.value.available} currency: ${walletBase!.currency}");
   await walletBase?.connectToNode(
-      node: Node(uri: "eu-west-2.wow.xmr.pm:34568", type: WalletType.wownero));
+      node: Node(uri: "eu-west-2.wow.xmr.pm:34568"));
   walletBase!.rescan(height: credentials.height);
   walletBase!.getNodeHeight();
   runApp(MyApp());
 }
 
 String toStringForinfo(WalletInfo info) {
-  return "id: ${info.id}  name: ${info.name} type: ${info.type} recovery: ${info.isRecovery}"
+  return "id: ${info.id}  name: ${info.name} recovery: ${info.isRecovery}"
       " restoreheight: ${info.restoreHeight} timestamp: ${info.timestamp} dirPath: ${info.dirPath} "
       "path: ${info.path} address: ${info.address} addresses: ${info.addresses}";
 }
 
-Future<String> pathForWalletDir(
-    {required String name, required WalletType type}) async {
+Future<String> pathForWalletDir({required String name}) async {
   Directory root = (await getApplicationDocumentsDirectory());
   if (Platform.isIOS) {
     root = (await getLibraryDirectory());
   }
-  final prefix = walletTypeToString(type).toLowerCase();
+  final prefix = "wownero";
   final walletsDir = Directory('${root.path}/wallets');
   final walletDire = Directory('${walletsDir.path}/$prefix/$name');
 
@@ -155,10 +140,8 @@ Future<String> pathForWalletDir(
   return walletDire.path;
 }
 
-Future<String> pathForWallet(
-        {required String name, required WalletType type}) async =>
-    await pathForWalletDir(name: name, type: type)
-        .then((path) => path + '/$name');
+Future<String> pathForWallet({required String name}) async =>
+    await pathForWalletDir(name: name).then((path) => path + '/$name');
 
 class MyApp extends StatefulWidget {
   @override
