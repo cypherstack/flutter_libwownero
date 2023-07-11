@@ -90,6 +90,10 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   late bool _hasSyncAfterStartup;
   Timer? _autoSaveTimer;
 
+  void Function({required int height, required int blocksLeft})? onNewBlock;
+  void Function()? onNewTransaction;
+  void Function()? syncStatusChanged;
+
   Future<void> init() async {
     await walletAddresses.init();
     balance = ObservableMap<CryptoCurrency?,
