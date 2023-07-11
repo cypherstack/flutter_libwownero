@@ -113,7 +113,7 @@ void main() async {
   //     "${walletBase!.id} walletinfo: ${toStringForinfo(walletBase!.walletInfo)} type: ${walletBase!.type} balance: "
   //     "${walletBase!.balance.entries.first.value.available} currency: ${walletBase!.currency}");
   await walletBase?.connectToNode(
-      node: Node(uri: "eu-west-2.wow.xmr.pm:34568"));
+      node: Node(uri: "wownero.stackwallet.com:34568"));
   walletBase!.rescan(height: credentials.height);
   walletBase!.getNodeHeight();
   runApp(MyApp());
@@ -206,7 +206,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () async {
                   Output output = Output(walletBase!); //
                   output.address =
-                      "45ssGbDbLTnjdhpAm89PDpHpj6r5xWXBwL6Bh8hpy3PUcEnLgroo9vFJ9UE3HsAT5TTSk3Cqe2boJQHePAXisQSu9i6tz5A";
+                      "Wo5EdU75i8w9tWaUse8CVwUACK9K4uEjG86GQ3zp4RZe824ErKnFNqQYF6wPfg3Tq2LXnL2cAdVBnbcFD9vxbgvR1wGPCd3Dx";
                   output.setCryptoAmount("0.00001011");
                   List<Output> outputs = [output];
                   Object tmp =
