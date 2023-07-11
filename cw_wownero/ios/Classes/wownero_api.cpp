@@ -71,7 +71,7 @@ extern "C"
         }
     };
 
-    struct WowneroWalletListener : Monero::WalletListener
+    struct WowneroWalletListener : Wownero::WalletListener
     {
         uint64_t m_height;
         bool m_need_to_refresh;
@@ -156,7 +156,7 @@ extern "C"
 
         int64_t datetime;
 
-        TransactionInfoRow(Monero::TransactionInfo *transaction)
+        TransactionInfoRow(Wownero::TransactionInfo *transaction)
         {
             amount = transaction->amount();
             fee = transaction->fee();
@@ -179,9 +179,9 @@ extern "C"
         uint64_t amount;
         uint64_t fee;
         char *hash;
-        Monero::PendingTransaction *transaction;
+        Wownero::PendingTransaction *transaction;
 
-        PendingTransactionRaw(Monero::PendingTransaction *_transaction)
+        PendingTransactionRaw(Wownero::PendingTransaction *_transaction)
         {
             transaction = _transaction;
             amount = _transaction->amount();
@@ -190,11 +190,11 @@ extern "C"
         }
     };
 
-    Monero::Wallet *m_wallet;
-    Monero::TransactionHistory *m_transaction_history;
+    Wownero::Wallet *m_wallet;
+    Wownero::TransactionHistory *m_transaction_history;
     WowneroWalletListener *m_listener;
-    Monero::Subaddress *m_subaddress;
-    Monero::SubaddressAccount *m_account;
+    Wownero::Subaddress *m_subaddress;
+    Wownero::SubaddressAccount *m_account;
     uint64_t m_last_known_wallet_height;
     uint64_t m_cached_syncing_blockchain_height = 0;
     std::mutex store_lock;
@@ -203,7 +203,7 @@ extern "C"
     #ifdef _WIN32
     __declspec(dllexport)
     #endif
-    void wow_change_current_wallet(Monero::Wallet *wallet)
+    void wow_change_current_wallet(Wownero::Wallet *wallet)
     {
         m_wallet = wallet;
         m_listener = nullptr;
@@ -240,7 +240,7 @@ extern "C"
     #ifdef _WIN32
     __declspec(dllexport)
     #endif
-    Monero::Wallet *wow_get_current_wallet()
+    Wownero::Wallet *wow_get_current_wallet()
     {
         return m_wallet;
     }
@@ -250,8 +250,8 @@ extern "C"
     #endif
     bool wow_create_14_word_wallet(char *path, char *password, char *language, int32_t networkType, char *error)
     {
-        Monero::NetworkType _networkType = static_cast<Monero::NetworkType>(networkType);
-        Monero::WalletManager *walletManager = Monero::WalletManagerFactory::getWalletManager();
+        Wownero::NetworkType _networkType = static_cast<Wownero::NetworkType>(networkType);
+        Wownero::WalletManager *walletManager = Wownero::WalletManagerFactory::getWalletManager();
 
         // 14 word seeds /*
         time_t time = std::time(nullptr);
@@ -267,11 +267,11 @@ extern "C"
 
         uint64_t restoreHeight = wow_seed.blockheight();
 
-        Monero::Wallet *wallet = walletManager->createDeterministicWalletFromSpendKey(
+        Wownero::Wallet *wallet = walletManager->createDeterministicWalletFromSpendKey(
             std::string(path),
             std::string(password),
             std::string(language),
-            static_cast<Monero::NetworkType>(_networkType),
+            static_cast<Wownero::NetworkType>(_networkType),
             (uint64_t)restoreHeight,
             spendKey,
             1);
@@ -283,7 +283,7 @@ extern "C"
 
         wallet->statusWithErrorString(status, errorString);
 
-        if (wallet->status() != Monero::Wallet::Status_Ok)
+        if (wallet->status() != Wownero::Wallet::Status_Ok)
         {
             error = strdup(wallet->errorString().c_str());
             return false;
@@ -298,11 +298,11 @@ extern "C"
     #endif
     bool wow_create_25_word_wallet(char *path, char *password, char *language, int32_t networkType, char *error)
     {
-        Monero::NetworkType _networkType = static_cast<Monero::NetworkType>(networkType);
-        Monero::WalletManager *walletManager = Monero::WalletManagerFactory::getWalletManager();
+        Wownero::NetworkType _networkType = static_cast<Wownero::NetworkType>(networkType);
+        Wownero::WalletManager *walletManager = Wownero::WalletManagerFactory::getWalletManager();
 
         // 25 word seeds /*
-        Monero::Wallet *wallet = walletManager->createWallet(path, password, language, _networkType);
+        Wownero::Wallet *wallet = walletManager->createWallet(path, password, language, _networkType);
         // */
 
         int status;
@@ -310,7 +310,7 @@ extern "C"
 
         wallet->statusWithErrorString(status, errorString);
 
-        if (wallet->status() != Monero::Wallet::Status_Ok)
+        if (wallet->status() != Wownero::Wallet::Status_Ok)
         {
             error = strdup(wallet->errorString().c_str());
             return false;
@@ -325,8 +325,8 @@ extern "C"
     #endif
     bool wow_restore_wallet_from_14_word_seed(char *path, char *password, char *seed, int32_t networkType, char *error)
     {
-        Monero::NetworkType _networkType = static_cast<Monero::NetworkType>(networkType);
-        Monero::WalletManager *walletManager = Monero::WalletManagerFactory::getWalletManager();
+        Wownero::NetworkType _networkType = static_cast<Wownero::NetworkType>(networkType);
+        Wownero::WalletManager *walletManager = Wownero::WalletManagerFactory::getWalletManager();
 
         // 14 word seeds /*
         wownero_seed wow_seed(seed, "wownero");
@@ -341,11 +341,11 @@ extern "C"
 
         uint64_t restoreHeight = wow_seed.blockheight();
 
-        Monero::Wallet *wallet = walletManager->createDeterministicWalletFromSpendKey(
+        Wownero::Wallet *wallet = walletManager->createDeterministicWalletFromSpendKey(
             std::string(path),
             std::string(password),
             "English",
-            static_cast<Monero::NetworkType>(_networkType),
+            static_cast<Wownero::NetworkType>(_networkType),
             (uint64_t)restoreHeight,
             spendKey,
             1);
@@ -357,7 +357,7 @@ extern "C"
 
         wallet->statusWithErrorString(status, errorString);
 
-        if (status != Monero::Wallet::Status_Ok || !errorString.empty())
+        if (status != Wownero::Wallet::Status_Ok || !errorString.empty())
         {
             error = strdup(errorString.c_str());
             return false;
@@ -372,11 +372,11 @@ extern "C"
     #endif
     bool wow_restore_wallet_from_25_word_seed(char *path, char *password, char *seed, int32_t networkType, uint64_t restoreHeight, char *error)
     {
-        Monero::NetworkType _networkType = static_cast<Monero::NetworkType>(networkType);
-        Monero::WalletManager *walletManager = Monero::WalletManagerFactory::getWalletManager();
+        Wownero::NetworkType _networkType = static_cast<Wownero::NetworkType>(networkType);
+        Wownero::WalletManager *walletManager = Wownero::WalletManagerFactory::getWalletManager();
 
         // 25 word seeds /*
-        Monero::Wallet *wallet = Monero::WalletManagerFactory::getWalletManager()->recoveryWallet(
+        Wownero::Wallet *wallet = Wownero::WalletManagerFactory::getWalletManager()->recoveryWallet(
             std::string(path),
             std::string(password),
             std::string(seed),
@@ -389,7 +389,7 @@ extern "C"
 
         wallet->statusWithErrorString(status, errorString);
 
-        if (status != Monero::Wallet::Status_Ok || !errorString.empty())
+        if (status != Wownero::Wallet::Status_Ok || !errorString.empty())
         {
             error = strdup(errorString.c_str());
             return false;
@@ -405,8 +405,8 @@ extern "C"
     bool wow_restore_wallet_from_keys(char *path, char *password, char *language, char *address, char *viewKey, char *spendKey, int32_t networkType, uint64_t restoreHeight, char *error)
     {
         // this function is not used, restoring from keys is disabled for Wownero
-        Monero::NetworkType _networkType = static_cast<Monero::NetworkType>(networkType);
-        Monero::Wallet *wallet = Monero::WalletManagerFactory::getWalletManager()->createWalletFromKeys(
+        Wownero::NetworkType _networkType = static_cast<Wownero::NetworkType>(networkType);
+        Wownero::Wallet *wallet = Wownero::WalletManagerFactory::getWalletManager()->createWalletFromKeys(
             std::string(path),
             std::string(password),
             std::string(language),
@@ -421,7 +421,7 @@ extern "C"
 
         wallet->statusWithErrorString(status, errorString);
 
-        if (status != Monero::Wallet::Status_Ok || !errorString.empty())
+        if (status != Wownero::Wallet::Status_Ok || !errorString.empty())
         {
             error = strdup(errorString.c_str());
             return false;
@@ -436,16 +436,16 @@ extern "C"
     #endif
     bool wow_load_wallet(char *path, char *password, int32_t nettype)
     {
-        Monero::NetworkType networkType = static_cast<Monero::NetworkType>(nettype);
-        Monero::WalletManager *walletManager = Monero::WalletManagerFactory::getWalletManager();
-        Monero::Wallet *wallet = walletManager->openWallet(std::string(path), std::string(password), networkType);
+        Wownero::NetworkType networkType = static_cast<Wownero::NetworkType>(nettype);
+        Wownero::WalletManager *walletManager = Wownero::WalletManagerFactory::getWalletManager();
+        Wownero::Wallet *wallet = walletManager->openWallet(std::string(path), std::string(password), networkType);
         int status;
         std::string errorString;
 
         wallet->statusWithErrorString(status, errorString);
         wow_change_current_wallet(wallet);
 
-        return !(status != Monero::Wallet::Status_Ok || !errorString.empty());
+        return !(status != Wownero::Wallet::Status_Ok || !errorString.empty());
     }
 
     #ifdef _WIN32
@@ -461,7 +461,7 @@ extern "C"
     #endif
     bool wow_is_wallet_exist(char *path)
     {
-        return Monero::WalletManagerFactory::getWalletManager()->walletExists(std::string(path));
+        return Wownero::WalletManagerFactory::getWalletManager()->walletExists(std::string(path));
     }
 
     #ifdef _WIN32
@@ -469,7 +469,7 @@ extern "C"
     #endif
     void wow_close_current_wallet()
     {
-        Monero::WalletManagerFactory::getWalletManager()->closeWallet(wow_get_current_wallet());
+        Wownero::WalletManagerFactory::getWalletManager()->closeWallet(wow_get_current_wallet());
         wow_change_current_wallet(nullptr);
     }
 
@@ -590,7 +590,7 @@ extern "C"
     #endif
     bool wow_setup_node(char *address, char *login, char *password, bool use_ssl, bool is_light_wallet, char *error)
     {
-        Monero::Wallet *wallet = wow_get_current_wallet();
+        Wownero::Wallet *wallet = wow_get_current_wallet();
 
         std::string _login = "";
         std::string _password = "";
@@ -677,9 +677,9 @@ extern "C"
     bool wow_transaction_create(char *address, char *payment_id, char *amount,
                                               uint8_t priority_raw, uint32_t subaddr_account, Utf8Box &error, PendingTransactionRaw &pendingTransaction)
     {
-        auto priority = static_cast<Monero::PendingTransaction::Priority>(priority_raw);
+        auto priority = static_cast<Wownero::PendingTransaction::Priority>(priority_raw);
         std::string _payment_id;
-        Monero::PendingTransaction *transaction;
+        Wownero::PendingTransaction *transaction;
 
         if (payment_id != nullptr)
         {
@@ -688,17 +688,17 @@ extern "C"
 
         if (amount != nullptr)
         {
-            uint64_t _amount = Monero::Wallet::amountFromString(std::string(amount));
+            uint64_t _amount = Wownero::Wallet::amountFromString(std::string(amount));
             transaction = m_wallet->createTransaction(std::string(address), _payment_id, _amount, m_wallet->defaultMixin(), priority, subaddr_account);
         }
         else
         {
-            transaction = m_wallet->createTransaction(std::string(address), _payment_id, Monero::optional<uint64_t>(), m_wallet->defaultMixin(), priority, subaddr_account);
+            transaction = m_wallet->createTransaction(std::string(address), _payment_id, Wownero::optional<uint64_t>(), m_wallet->defaultMixin(), priority, subaddr_account);
         }
 
         int status = transaction->status();
 
-        if (status == Monero::PendingTransaction::Status::Status_Error || status == Monero::PendingTransaction::Status::Status_Critical)
+        if (status == Wownero::PendingTransaction::Status::Status_Error || status == Wownero::PendingTransaction::Status::Status_Critical)
         {
             error = Utf8Box(strdup(transaction->errorString().c_str()));
             return false;
@@ -723,14 +723,14 @@ extern "C"
 
         for (int i = 0; i < size; i++) {
             _addresses.push_back(std::string(*addresses));
-            _amounts.push_back(Monero::Wallet::amountFromString(std::string(*amounts)));
+            _amounts.push_back(Wownero::Wallet::amountFromString(std::string(*amounts)));
             addresses++;
             amounts++;
         }
 
-        auto priority = static_cast<Monero::PendingTransaction::Priority>(priority_raw);
+        auto priority = static_cast<Wownero::PendingTransaction::Priority>(priority_raw);
         std::string _payment_id;
-        Monero::PendingTransaction *transaction;
+        Wownero::PendingTransaction *transaction;
 
         if (payment_id != nullptr)
         {
@@ -741,7 +741,7 @@ extern "C"
 
         int status = transaction->status();
 
-        if (status == Monero::PendingTransaction::Status::Status_Error || status == Monero::PendingTransaction::Status::Status_Critical)
+        if (status == Wownero::PendingTransaction::Status::Status_Error || status == Wownero::PendingTransaction::Status::Status_Critical)
         {
             error = Utf8Box(strdup(transaction->errorString().c_str()));
             return false;
@@ -865,13 +865,13 @@ extern "C"
     #endif
     int64_t *wow_subaddress_get_all()
     {
-        std::vector<Monero::SubaddressRow *> _subaddresses = m_subaddress->getAll();
+        std::vector<Wownero::SubaddressRow *> _subaddresses = m_subaddress->getAll();
         size_t size = _subaddresses.size();
         int64_t *subaddresses = (int64_t *)malloc(size * sizeof(int64_t));
 
         for (int i = 0; i < size; i++)
         {
-            Monero::SubaddressRow *row = _subaddresses[i];
+            Wownero::SubaddressRow *row = _subaddresses[i];
             SubaddressRow *_row = new SubaddressRow(row->getRowId(), strdup(row->getAddress().c_str()), strdup(row->getLabel().c_str()));
             subaddresses[i] = reinterpret_cast<int64_t>(_row);
         }
@@ -884,7 +884,7 @@ extern "C"
     #endif
     int32_t wow_subaddress_size()
     {
-        std::vector<Monero::SubaddressRow *> _subaddresses = m_subaddress->getAll();
+        std::vector<Wownero::SubaddressRow *> _subaddresses = m_subaddress->getAll();
         return _subaddresses.size();
     }
 
@@ -917,7 +917,7 @@ extern "C"
     #endif
     int32_t wow_account_size()
     {
-        std::vector<Monero::SubaddressAccountRow *> _accocunts = m_account->getAll();
+        std::vector<Wownero::SubaddressAccountRow *> _accocunts = m_account->getAll();
         return _accocunts.size();
     }
 
@@ -926,13 +926,13 @@ extern "C"
     #endif
     int64_t *wow_account_get_all()
     {
-        std::vector<Monero::SubaddressAccountRow *> _accocunts = m_account->getAll();
+        std::vector<Wownero::SubaddressAccountRow *> _accocunts = m_account->getAll();
         size_t size = _accocunts.size();
         int64_t *accocunts = (int64_t *)malloc(size * sizeof(int64_t));
 
         for (int i = 0; i < size; i++)
         {
-            Monero::SubaddressAccountRow *row = _accocunts[i];
+            Wownero::SubaddressAccountRow *row = _accocunts[i];
             AccountRow *_row = new AccountRow(row->getRowId(), strdup(row->getLabel().c_str()));
             accocunts[i] = reinterpret_cast<int64_t>(_row);
         }
@@ -969,13 +969,13 @@ extern "C"
     #endif
     int64_t *wow_transactions_get_all()
     {
-        std::vector<Monero::TransactionInfo *> transactions = m_transaction_history->getAll();
+        std::vector<Wownero::TransactionInfo *> transactions = m_transaction_history->getAll();
         size_t size = transactions.size();
         int64_t *transactionAddresses = (int64_t *)malloc(size * sizeof(int64_t));
 
         for (int i = 0; i < size; i++)
         {
-            Monero::TransactionInfo *row = transactions[i];
+            Wownero::TransactionInfo *row = transactions[i];
             TransactionInfoRow *tx = new TransactionInfoRow(row);
             transactionAddresses[i] = reinterpret_cast<int64_t>(tx);
         }
@@ -1024,8 +1024,8 @@ extern "C"
     #endif
     void wow_on_startup()
     {
-        Monero::Utils::onStartup();
-        Monero::WalletManagerFactory::setLogLevel(4);
+        Wownero::Utils::onStartup();
+        Wownero::WalletManagerFactory::setLogLevel(4);
     }
 
     #ifdef _WIN32
