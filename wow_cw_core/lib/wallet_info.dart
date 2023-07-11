@@ -7,41 +7,31 @@ class WowneroWalletInfo extends HiveObject {
   WowneroWalletInfo(
       this.id,
       this.name,
-      this.type,
       this.isRecovery,
       this.restoreHeight,
       this.timestamp,
       this.dirPath,
       this.path,
-      this.address,
-      this.yatEid,
-      this.yatLastUsedAddressRaw)
-      : _yatLastUsedAddressController = StreamController<String?>.broadcast();
+      this.address);
 
   factory WowneroWalletInfo.external(
       {required String id,
       required String name,
-      required WalletType type,
       required bool isRecovery,
       required int restoreHeight,
       required DateTime date,
       required String dirPath,
       required String path,
-      required String address,
-      String yatEid = '',
-      String yatLastUsedAddressRaw = ''}) {
+      required String address}) {
     return WowneroWalletInfo(
         id,
         name,
-        type,
         isRecovery,
         restoreHeight,
         date.millisecondsSinceEpoch,
         dirPath,
         path,
-        address,
-        yatEid,
-        yatLastUsedAddressRaw);
+        address);
   }
 
   static const typeId = 69;

@@ -17,7 +17,7 @@ class Node {
     uriRaw = uri;
   }
 
-  WowneroNode.fromMap(Map map)
+  Node.fromMap(Map map)
       : uriRaw = map['uri'] as String? ?? '',
         login = map['login'] as String?,
         password = map['password'] as String?,

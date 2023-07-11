@@ -44,7 +44,7 @@ abstract class WalletBase<
 
   HistoryType? transactionHistory;
 
-  Future<void> connectToNode({required WowneroNode node});
+  Future<void> connectToNode({required Node node});
 
   Future<void> startSync();
 

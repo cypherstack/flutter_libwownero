@@ -3,8 +3,6 @@ import 'package:wow_cw_core/wallet_credentials.dart';
 
 abstract class WalletService<N extends WowneroWalletCredentials,
     RFS extends WowneroWalletCredentials, RFK extends WowneroWalletCredentials> {
-  WalletType getType();
-
   Future<WalletBase> create(N credentials);
 
   Future<WalletBase> restoreFromSeed(RFS credentials);

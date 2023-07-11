@@ -124,7 +124,7 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   }
 
   @override
-  Future<void> connectToNode({required WowneroNode node}) async {
+  Future<void> connectToNode({required Node node}) async {
     try {
       syncStatus = ConnectingSyncStatus();
       await wownero_wallet.setupNode(
