@@ -23,6 +23,7 @@ import 'package:wow_cw_core/wallet_base.dart';
 import 'package:wow_cw_core/wallet_credentials.dart';
 import 'package:wow_cw_core/wallet_info.dart';
 import 'package:wow_cw_core/wallet_service.dart';
+import 'package:cw_wownero/wownero_wallet_service.dart';
 
 FlutterSecureStorage? storage;
 WowneroWalletService? walletService;
@@ -73,7 +74,7 @@ void main() async {
           "water water water water water "
           "water water water water water",
     );
-    walletInfo = WalletInfo.external(
+    walletInfo = WowneroWalletInfo.external(
         id: WalletBase.idFor(name),
         name: name,
         isRecovery: false,
@@ -118,7 +119,7 @@ void main() async {
   runApp(MyApp());
 }
 
-String toStringForinfo(WalletInfo info) {
+String toStringForinfo(WowneroWalletInfo info) {
   return "id: ${info.id}  name: ${info.name} recovery: ${info.isRecovery}"
       " restoreheight: ${info.restoreHeight} timestamp: ${info.timestamp} dirPath: ${info.dirPath} "
       "path: ${info.path} address: ${info.address} addresses: ${info.addresses}";
