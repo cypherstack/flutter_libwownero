@@ -1,6 +1,6 @@
-# flutter_libmonero_example
+# flutter_libwownero_example
 
-Demonstrates how to use the flutter_libmonero plugin.
+Demonstrates how to use the flutter_libwownero plugin.
 
 ## Getting Started
 

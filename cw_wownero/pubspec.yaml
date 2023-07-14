@@ -18,8 +18,8 @@ dependencies:
   mobx: ^2.0.7+4
   flutter_mobx: ^2.0.6+1
   intl: ^0.17.0
-  cw_core:
-    path: ../cw_core
+  wow_cw_core:
+    path: ../wow_cw_core
   collection: ^1.15.0-nullsafety.4
 
 dev_dependencies:

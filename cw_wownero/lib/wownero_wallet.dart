@@ -1,17 +1,5 @@
 import 'dart:async';
 
-import 'package:cw_core/account.dart';
-import 'package:cw_core/crypto_currency.dart';
-import 'package:cw_core/monero_transaction_priority.dart';
-import 'package:cw_core/monero_wallet_keys.dart';
-import 'package:cw_core/monero_wallet_utils.dart';
-import 'package:cw_core/node.dart';
-import 'package:cw_core/pending_transaction.dart';
-import 'package:cw_core/sync_status.dart';
-import 'package:cw_core/transaction_priority.dart';
-import 'package:cw_core/wallet_base.dart';
-import 'package:cw_core/wallet_info.dart';
-import 'package:cw_core/wallet_type.dart';
 import 'package:cw_wownero/api/structs/pending_transaction.dart';
 import 'package:cw_wownero/api/transaction_history.dart'
     as wownero_transaction_history;
@@ -27,7 +15,19 @@ import 'package:cw_wownero/wownero_transaction_creation_exception.dart';
 import 'package:cw_wownero/wownero_transaction_history.dart';
 import 'package:cw_wownero/wownero_transaction_info.dart';
 import 'package:cw_wownero/wownero_wallet_addresses.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
+import 'package:wow_cw_core/account.dart';
+import 'package:wow_cw_core/crypto_currency.dart';
+import 'package:wow_cw_core/monero_transaction_priority.dart';
+import 'package:wow_cw_core/monero_wallet_keys.dart';
+import 'package:wow_cw_core/monero_wallet_utils.dart';
+import 'package:wow_cw_core/node.dart';
+import 'package:wow_cw_core/pending_transaction.dart';
+import 'package:wow_cw_core/sync_status.dart';
+import 'package:wow_cw_core/transaction_priority.dart';
+import 'package:wow_cw_core/wallet_base.dart';
+import 'package:wow_cw_core/wallet_info.dart';
 
 part 'wownero_wallet.g.dart';
 
@@ -49,8 +49,8 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
     walletAddresses = WowneroWalletAddresses(walletInfo);
     _onAccountChangeReaction =
         reaction((_) => walletAddresses.account, (Account? account) {
-      balance = ObservableMap<CryptoCurrency?, WowneroBalance>.of(<
-          CryptoCurrency?, WowneroBalance>{
+      balance = ObservableMap<CryptoCurrency?,
+          WowneroBalance>.of(<CryptoCurrency?, WowneroBalance>{
         currency: WowneroBalance(
             fullBalance:
                 wownero_wallet.getFullBalance(accountIndex: account!.id),
@@ -96,8 +96,8 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
 
   Future<void> init() async {
     await walletAddresses.init();
-    balance = ObservableMap<CryptoCurrency?, WowneroBalance>.of(<
-        CryptoCurrency?, WowneroBalance>{
+    balance = ObservableMap<CryptoCurrency?,
+        WowneroBalance>.of(<CryptoCurrency?, WowneroBalance>{
       currency: WowneroBalance(
           fullBalance: wownero_wallet.getFullBalance(
               accountIndex: walletAddresses.account!.id),
@@ -244,17 +244,17 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   int calculateEstimatedFee(TransactionPriority priority, int amount) {
     // FIXME: hardcoded value;
 
-    if (priority is MoneroTransactionPriority) {
+    if (priority is WowneroTransactionPriority) {
       switch (priority) {
-        case MoneroTransactionPriority.slow:
+        case WowneroTransactionPriority.slow:
           return 24590000;
-        case MoneroTransactionPriority.regular:
+        case WowneroTransactionPriority.regular:
           return 123050000;
-        case MoneroTransactionPriority.medium:
+        case WowneroTransactionPriority.medium:
           return 245029999;
-        case MoneroTransactionPriority.fast:
+        case WowneroTransactionPriority.fast:
           return 614530000;
-        case MoneroTransactionPriority.fastest:
+        case WowneroTransactionPriority.fastest:
           return 26021600000;
       }
     }
@@ -266,7 +266,7 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   Future<bool> save({bool prioritySave = false}) async {
     print("save is called");
     await walletAddresses.updateAddressesInBox();
-    await backupWalletFiles(name: name!, type: WalletType.wownero);
+    await backupWalletFiles(name!);
     return await wownero_wallet.store(prioritySave: prioritySave);
   }
 

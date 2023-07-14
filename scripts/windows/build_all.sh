@@ -10,7 +10,6 @@ mkdir -p cache
 #./build_expat.sh
 ./build_unbound.sh
 ./build_zmq.sh
-./build_monero.sh
 ./build_wownero.sh
 ./build_wownero_seed.sh
 ./build_sharedfile.sh

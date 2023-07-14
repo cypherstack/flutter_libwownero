@@ -2,7 +2,7 @@ analyzer:
   strong-mode:
     implicit-casts: false
 #    implicit-dynamic: false
-  exclude: [build/**, lib/generated/*.dart, lib/**.g.dart, cw_monero/ios/External/**, cw_shared_external/**, shared_external/**]
+  exclude: [build/**, lib/generated/*.dart, lib/**.g.dart, cw_wownero/ios/External/**, wow_cw_shared_external/**, shared_external/**]
 
 linter:
   rules:

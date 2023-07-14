@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_libmonero/entities/secret_store_key.dart';
+import 'package:flutter_libwownero/entities/secret_store_key.dart';
 
 class KeyService {
   KeyService(this._secureStorage);
