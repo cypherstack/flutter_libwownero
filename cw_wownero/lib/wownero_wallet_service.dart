@@ -194,7 +194,7 @@ class WowneroWalletService extends WalletService<
             wallet.getSeedHeight(credentials.mnemonic!);
       } else {
         wallet.walletInfo.restoreHeight = 0;
-        // TODO use an alternative to wow_seed's wow_get_seed_height
+        // TODO use an alternative to wow_seed's get_seed_height
       }
 
       await wallet.init();

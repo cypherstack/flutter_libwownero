@@ -2,6 +2,7 @@
 
 export API=21
 export WORKDIR="$(pwd)/"build
+export CW_ROOT=${WORKDIR}/../../..
 export ANDROID_NDK_ZIP=${WORKDIR}/android-ndk-r17c.zip
 export ANDROID_NDK_ROOT=${WORKDIR}/android-ndk-r17c
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT

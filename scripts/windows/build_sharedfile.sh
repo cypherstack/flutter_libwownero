@@ -13,7 +13,11 @@ COMMIT=$(git log -1 --pretty=format:"%H")
 OS="WINDOWS"
 sed -i "/\/\*${OS}_VERSION/c\\/\*${OS}_VERSION\*\/ const ${OS}_VERSION = \"$COMMIT\";" $VERSIONS_FILE
 
+cd ${SCRIPTDIR}/../../
+git apply scripts/windows/nice.patch
+
 cd ${WORKDIR}
+
 mkdir -p monero_build
 mkdir -p wownero_build
 WOWNERO_BUILD=${WORKDIR}/wownero_build

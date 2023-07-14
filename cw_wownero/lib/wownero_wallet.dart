@@ -15,7 +15,6 @@ import 'package:cw_wownero/wownero_transaction_creation_exception.dart';
 import 'package:cw_wownero/wownero_transaction_history.dart';
 import 'package:cw_wownero/wownero_transaction_info.dart';
 import 'package:cw_wownero/wownero_wallet_addresses.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 import 'package:wow_cw_core/account.dart';
 import 'package:wow_cw_core/crypto_currency.dart';
@@ -116,14 +115,14 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
       }
     }
 
-    _autoSaveTimer = Timer.periodic(
-        Duration(seconds: _autoSaveInterval), (_) async => await save());
+    // _autoSaveTimer = Timer.periodic(
+    //     Duration(seconds: _autoSaveInterval), (_) async => await save());
   }
 
   @override
   void close() {
     _listener?.stop();
-    _onAccountChangeReaction?.reaction?.dispose();
+    _onAccountChangeReaction?.reaction.dispose();
     _autoSaveTimer?.cancel();
   }
 
@@ -131,15 +130,20 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
   Future<void> connectToNode({required Node node}) async {
     try {
       syncStatus = ConnectingSyncStatus();
+      syncStatusChanged?.call();
       await wownero_wallet.setupNode(
           address: node.uri.toString(),
           login: node.login,
           password: node.password,
           useSSL: node.isSSL,
           isLightWallet: false); // FIXME: hardcoded value
+
+      await wownero_wallet.setTrustedDaemon(node.trusted);
       syncStatus = ConnectedSyncStatus();
+      syncStatusChanged?.call();
     } catch (e) {
       syncStatus = FailedSyncStatus();
+      syncStatusChanged?.call();
       print(e);
     }
   }
@@ -155,8 +159,10 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
       wownero_wallet.startRefresh();
       _setListeners();
       _listener?.start();
+      syncStatusChanged?.call();
     } catch (e) {
       syncStatus = FailedSyncStatus();
+      syncStatusChanged?.call();
       print(e);
       rethrow;
     }
@@ -412,6 +418,7 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
         _askForUpdateBalance();
         walletAddresses.accountList.update();
         syncStatus = SyncedSyncStatus();
+        syncStatusChanged?.call();
 
         if (!_hasSyncAfterStartup) {
           _hasSyncAfterStartup = true;
@@ -423,10 +430,12 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
         }
       } else {
         syncStatus = SyncingSyncStatus(blocksLeft, ptc, height);
+        syncStatusChanged?.call();
       }
     } catch (e) {
       print(e.toString());
     }
+    onNewBlock?.call(height: height, blocksLeft: blocksLeft);
   }
 
   void _onNewTransaction() async {
@@ -437,5 +446,6 @@ abstract class WowneroWalletBase extends WalletBase<WowneroBalance,
     } catch (e) {
       print(e.toString());
     }
+    onNewTransaction?.call();
   }
 }

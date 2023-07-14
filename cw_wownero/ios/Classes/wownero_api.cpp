@@ -19,6 +19,7 @@ void __clear_cache(void* start, void* end) { }
 #include <wownero_seed/wownero_seed.hpp>
 #include "../External/android/include/wallet2_api.h"
 #endif
+
 #ifdef linux
 #include <string.h>
 #endif

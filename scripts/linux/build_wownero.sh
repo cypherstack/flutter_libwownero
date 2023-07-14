@@ -1,17 +1,20 @@
 #!/bin/sh
 
 . ./config.sh
+
+WOWNERO_URL="https://git.wownero.com/wownero/wownero.git"
 WOWNERO_VERSION=v0.11.0.3
 WOWNERO_SRC_DIR=${WORKDIR}/wownero
 WOWNERO_SHA_HEAD="e921c3b8a35bc497ef92c4735e778e918b4c4f99"
 
-# git clone https://git.wownero.com/wownero/wownero.git ${WOWNERO_SRC_DIR} --branch ${WOWNERO_VERSION}
+echo "Cloning wownero from - $WOWNERO_URL to - $WOWNERO_SRC_DIR"
+git clone ${WOWNERO_URL} ${WOWNERO_SRC_DIR} --branch ${WOWNERO_VERSION}
 cd $WOWNERO_SRC_DIR
 git reset --hard $WOWNERO_SHA_HEAD
 git submodule init
 git submodule update
-git apply --stat --apply ../../../../patches/refresh_thread.patch
-git apply --stat --apply ../../../../patches/wownero_namespace.patch
+git apply --stat --apply ${CW_ROOT}/patches/wownero/refresh_thread.patch
+git apply --stat --apply ${CW_ROOT}/patches/wownero_namespace.patch
 
 for arch in $TYPES_OF_BUILD
 do
@@ -22,8 +25,12 @@ do
 	export CMAKE_INCLUDE_PATH="${PREFIX}/include"
 	export CMAKE_LIBRARY_PATH="${PREFIX}/lib"
 
-	mkdir -p $DEST_LIB_DIR
-	mkdir -p $DEST_INCLUDE_DIR
+mkdir -p $DEST_LIB_DIR
+mkdir -p $DEST_INCLUDE_DIR
+LIBUNBOUND_PATH=${PREFIX}/lib/libunbound.a
+if [ -f "$LIBUNBOUND_PATH" ]; then
+  cp $LIBUNBOUND_PATH $DEST_LIB_DIR
+fi
 
 	case $arch in
 		"x86_64"	)
@@ -47,8 +54,9 @@ do
 	make wallet_api -j$THREADS
 	find . -path ./lib -prune -o -name '*.a' -exec cp '{}' lib \;
 
-	cp -r ./lib/* $DEST_LIB_DIR
-	cp ../../src/wallet/api/wallet2_api.h  $DEST_INCLUDE_DIR
+cp -r ./lib/* $DEST_LIB_DIR
+cp ../../src/wallet/api/wallet2_api.h  $DEST_INCLUDE_DIR
+cp -r $CMAKE_LIBRARY_PATH/*.a $DEST_LIB_DIR
 
 	CW_DIR="$(pwd)"/../../../../../../../flutter_libwownero
 	CW_WOWNERO_EXTERNAL_DIR=${CW_DIR}/cw_wownero/ios/External/android
