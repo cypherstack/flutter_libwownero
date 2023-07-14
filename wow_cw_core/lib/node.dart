@@ -13,6 +13,7 @@ class Node {
     this.login,
     this.password,
     this.useSSL,
+    this.trusted = false,
   }) {
     uriRaw = uri;
   }
@@ -21,7 +22,8 @@ class Node {
       : uriRaw = map['uri'] as String? ?? '',
         login = map['login'] as String?,
         password = map['password'] as String?,
-        useSSL = map['useSSL'] as bool?;
+        useSSL = map['useSSL'] as bool?,
+        trusted = map['trusted'] as bool? ?? false;
 
   String? uriRaw;
 
@@ -30,6 +32,8 @@ class Node {
   String? password;
 
   bool? useSSL;
+
+  bool trusted;
 
   bool get isSSL => useSSL ?? false;
 

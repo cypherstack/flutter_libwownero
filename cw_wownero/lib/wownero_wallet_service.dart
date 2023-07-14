@@ -112,7 +112,7 @@ class WowneroWalletService extends WalletService<
       final isValid = wallet.walletAddresses.validate();
 
       if (!isValid) {
-        await restoreOrResetWalletFiles(name: name, type: WalletType.wownero);
+        await restoreOrResetWalletFiles(name);
         wallet.close();
         return openWallet(name, password);
       }
@@ -130,7 +130,7 @@ class WowneroWalletService extends WalletService<
           (e.toString().contains('does not correspond') ||
               (e is WalletOpeningException &&
                   e.message!.contains('does not correspond')))) {
-        await restoreOrResetWalletFiles(name: name, type: WalletType.wownero);
+        await restoreOrResetWalletFiles(name);
         return openWallet(name, password);
       }
 

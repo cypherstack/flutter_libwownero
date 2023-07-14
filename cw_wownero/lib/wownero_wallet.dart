@@ -15,7 +15,6 @@ import 'package:cw_wownero/wownero_transaction_creation_exception.dart';
 import 'package:cw_wownero/wownero_transaction_history.dart';
 import 'package:cw_wownero/wownero_transaction_info.dart';
 import 'package:cw_wownero/wownero_wallet_addresses.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 import 'package:wow_cw_core/account.dart';
 import 'package:wow_cw_core/crypto_currency.dart';
