@@ -1,4 +1,4 @@
-name: flutter_libmonero
+name: flutter_libwownero
 description: A new flutter plugin project.
 version: 0.0.1
 author:
@@ -16,17 +16,14 @@ dependencies:
   shared_preferences: ^2.0.15
   archive: ^3.1.6
 #  mobx: ^2.0.7
-  cw_core:
-    path: ./cw_core
-
-  cw_monero:
-    path: ./cw_monero
+  wow_cw_core:
+    path: ./wow_cw_core
 
   cw_wownero:
     path: ./cw_wownero
 
-  cw_shared_external:
-    path: ./cw_shared_external
+  wow_cw_shared_external:
+    path: ./wow_cw_shared_external
 
   stack_wallet_backup:
     git:
@@ -53,12 +50,12 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.flutter_libmonero
-        pluginClass: FlutterLibmoneroPlugin
+        package: com.example.flutter_libwownero
+        pluginClass: FlutterLibwowneroPlugin
       ios:
-        pluginClass: FlutterLibmoneroPlugin
+        pluginClass: FlutterLibwowneroPlugin
       linux:
-        pluginClass: FlutterLibmoneroPlugin
+        pluginClass: FlutterLibwowneroPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

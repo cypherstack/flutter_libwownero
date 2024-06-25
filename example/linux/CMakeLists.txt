@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
-set(BINARY_NAME "flutter_libmonero_example")
-set(APPLICATION_ID "com.example.flutter_libmonero")
+set(BINARY_NAME "flutter_libwownero_example")
+set(APPLICATION_ID "com.example.flutter_libwownero")
 
 cmake_policy(SET CMP0063 NEW)
 
@@ -84,7 +84,7 @@ install(FILES "${FLUTTER_ICU_DATA_FILE}" DESTINATION "${INSTALL_BUNDLE_DATA_DIR}
 install(FILES "${FLUTTER_LIBRARY}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
   COMPONENT Runtime)
 
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/../../scripts/linux/build/libcw_monero.so" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/../../scripts/linux/build/libcw_wownero.so" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
   COMPONENT Runtime)
 
 if(PLUGIN_BUNDLED_LIBRARIES)

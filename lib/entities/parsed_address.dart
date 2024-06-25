@@ -1,5 +1,5 @@
-// import 'package:flutter_libmonero/entities/openalias_record.dart';
-// import 'package:flutter_libmonero/entities/yat_record.dart';
+// import 'package:flutter_libwownero/entities/openalias_record.dart';
+// import 'package:flutter_libwownero/entities/yat_record.dart';
 import 'package:flutter/material.dart';
 
 enum ParseFrom { unstoppableDomains, openAlias, yatRecord, notParsed }

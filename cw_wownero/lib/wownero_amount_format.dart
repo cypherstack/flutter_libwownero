@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:cw_core/crypto_amount_format.dart';
+import 'package:wow_cw_core/crypto_amount_format.dart';
 
 const wowneroAmountLength = 11;
 const wowneroAmountDivider = 100000000000;

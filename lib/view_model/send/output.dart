@@ -1,10 +1,8 @@
-import 'package:cw_core/wallet_base.dart';
-import 'package:cw_core/wallet_type.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_libmonero/entities/parsed_address.dart';
-import 'package:flutter_libmonero/monero/monero.dart';
+import 'package:flutter_libwownero/entities/parsed_address.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
+import 'package:wow_cw_core/wallet_base.dart';
 
 import '../../wownero/wownero.dart';
 
@@ -60,18 +58,8 @@ abstract class OutputBase with Store {
     try {
       if (cryptoAmount?.isNotEmpty ?? false) {
         final _cryptoAmount = cryptoAmount!.replaceAll(',', '.');
-        int _amount = 0;
-        switch (walletType) {
-          case WalletType.monero:
-            _amount = monero.formatterMoneroParseAmount(amount: _cryptoAmount);
-            break;
-          case WalletType.wownero:
-            _amount =
-                wownero.formatterWowneroParseAmount(amount: _cryptoAmount);
-            break;
-          default:
-            break;
-        }
+        final int _amount =
+            wownero.formatterWowneroParseAmount(amount: _cryptoAmount);
 
         if (_amount > 0) {
           amount = _amount;
@@ -89,15 +77,9 @@ abstract class OutputBase with Store {
     try {
       //TODO: should not be default fee, should be user chosen
       final fee = _wallet.calculateEstimatedFee(
-          monero.getDefaultTransactionPriority(), formattedCryptoAmount);
+          wownero.getDefaultTransactionPriority(), formattedCryptoAmount);
 
-      if (_wallet.type == WalletType.monero) {
-        return monero.formatterMoneroAmountToDouble(amount: fee);
-      }
-
-      if (_wallet.type == WalletType.wownero) {
-        return wownero.formatterWowneroAmountToDouble(amount: fee);
-      }
+      return wownero.formatterWowneroAmountToDouble(amount: fee);
     } catch (e) {
       print(e.toString());
     }
@@ -117,7 +99,6 @@ abstract class OutputBase with Store {
   //   }
   // }
 
-  WalletType? get walletType => _wallet.type;
   // final CryptoCurrency Function() cryptoCurrencyHandler;
   final WalletBase _wallet;
   // final SettingsStore _settingsStore;
@@ -188,29 +169,8 @@ abstract class OutputBase with Store {
   // }
 
   void _setCryptoNumMaximumFractionDigits() {
-    var maximumFractionDigits = 0;
-
-    switch (_wallet.type) {
-      case WalletType.monero:
-        maximumFractionDigits = 12;
-        break;
-      case WalletType.bitcoin:
-        maximumFractionDigits = 8;
-        break;
-      case WalletType.litecoin:
-        maximumFractionDigits = 8;
-        break;
-      case WalletType.haven:
-        maximumFractionDigits = 12;
-        break;
-      case WalletType.wownero:
-        maximumFractionDigits = 12;
-        break;
-      default:
-        break;
-    }
-
-    _cryptoNumberFormat.maximumFractionDigits = maximumFractionDigits;
+    _cryptoNumberFormat.maximumFractionDigits =
+        11; // TODO: (fix) this constant is declared in multiple places
   }
 
   // Future<void> fetchParsedAddress(BuildContext context) async {

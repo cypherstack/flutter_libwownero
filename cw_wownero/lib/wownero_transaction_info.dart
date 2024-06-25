@@ -1,10 +1,10 @@
-import 'package:cw_core/format_amount.dart';
-import 'package:cw_core/parseBoolFromString.dart';
-import 'package:cw_core/transaction_direction.dart';
-import 'package:cw_core/transaction_info.dart';
 import 'package:cw_wownero/api/structs/transaction_info_row.dart';
 import 'package:cw_wownero/api/transaction_history.dart';
 import 'package:cw_wownero/wownero_amount_format.dart';
+import 'package:wow_cw_core/format_amount.dart';
+import 'package:wow_cw_core/parseBoolFromString.dart';
+import 'package:wow_cw_core/transaction_direction.dart';
+import 'package:wow_cw_core/transaction_info.dart';
 
 class WowneroTransactionInfo extends TransactionInfo {
   WowneroTransactionInfo(

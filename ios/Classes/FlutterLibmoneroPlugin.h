@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface FlutterLibmoneroPlugin : NSObject<FlutterPlugin>
+@interface FlutterLibwowneroPlugin : NSObject<FlutterPlugin>
 @end

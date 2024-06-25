@@ -1,34 +1,32 @@
-import 'dart:async';
 import 'dart:core';
 import 'dart:core' as core;
 import 'dart:io';
 import 'dart:math';
 
-import 'package:cw_core/monero_amount_format.dart';
-import 'package:cw_core/node.dart';
-import 'package:cw_core/pending_transaction.dart';
-import 'package:cw_core/unspent_coins_info.dart';
-import 'package:cw_core/wallet_base.dart';
-import 'package:cw_core/wallet_credentials.dart';
-import 'package:cw_core/wallet_info.dart';
-import 'package:cw_core/wallet_service.dart';
-import 'package:cw_core/wallet_type.dart';
 import 'package:cw_wownero/api/wallet.dart';
 import 'package:cw_wownero/pending_wownero_transaction.dart';
 import 'package:cw_wownero/wownero_wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_libmonero/core/key_service.dart';
-import 'package:flutter_libmonero/core/wallet_creation_service.dart';
-import 'package:flutter_libmonero/view_model/send/output.dart';
-import 'package:flutter_libmonero/wownero/wownero.dart';
+import 'package:flutter_libwownero/core/key_service.dart';
+import 'package:flutter_libwownero/core/wallet_creation_service.dart';
+import 'package:flutter_libwownero/view_model/send/output.dart';
+import 'package:flutter_libwownero/wownero/wownero.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wow_cw_core/monero_amount_format.dart';
+import 'package:wow_cw_core/node.dart';
+import 'package:wow_cw_core/pending_transaction.dart';
+import 'package:wow_cw_core/wallet_base.dart';
+import 'package:wow_cw_core/wallet_credentials.dart';
+import 'package:wow_cw_core/wallet_info.dart';
+import 'package:wow_cw_core/wallet_service.dart';
+import 'package:cw_wownero/wownero_wallet_service.dart';
 
 FlutterSecureStorage? storage;
-WalletService? walletService;
+WowneroWalletService? walletService;
 SharedPreferences? prefs;
 KeyService? keysStorage;
 WowneroWalletBase? walletBase;
@@ -43,38 +41,25 @@ void main() async {
   await Hive.close();
   Hive.init(appDir.path);
 
-  // if (!Hive.isAdapterRegistered(Node.typeId)) {
-  Hive.registerAdapter(NodeAdapter());
-  // }
-
   // if (!Hive.isAdapterRegistered(WalletInfo.typeId)) {
   Hive.registerAdapter(WalletInfoAdapter());
   // }
 
-  // if (!Hive.isAdapterRegistered(WalletType.)) {
-  Hive.registerAdapter(WalletTypeAdapter());
-  // }
-
-  // if (!Hive.isAdapterRegistered(UnspentCoinsInfo.typeId)) {
-  Hive.registerAdapter(UnspentCoinsInfoAdapter());
-  // }
-
   wownero.onStartup();
-  final _walletInfoSource = await Hive.openBox<WalletInfo>(WalletInfo.boxName);
+  final _walletInfoSource = await Hive.openBox<WowneroWalletInfo>(WowneroWalletInfo.boxName);
   walletService = wownero.createWowneroWalletService(_walletInfoSource);
   storage = FlutterSecureStorage();
   prefs = await SharedPreferences.getInstance();
   keysStorage = KeyService(storage!);
-  WalletInfo walletInfo;
-  late WalletCredentials credentials;
+  WowneroWalletInfo walletInfo;
+  late WowneroWalletCredentials credentials;
   try {
     // if (name?.isEmpty ?? true) {
     // name = await generateName();
     // }
     String name = "namee${Random().nextInt(10000000)}";
-    final dirPath =
-        await pathForWalletDir(name: name, type: WalletType.wownero);
-    final path = await pathForWallet(name: name, type: WalletType.wownero);
+    final dirPath = await pathForWalletDir(name: name);
+    final path = await pathForWallet(name: name);
     credentials =
         // //     creating a new wallet
         // wownero.createWowneroNewWalletCredentials(
@@ -82,13 +67,16 @@ void main() async {
         // restoring a previous wallet
         wownero.createWowneroRestoreWalletFromSeedCredentials(
       name: name,
-      // height: 2580000,
-      mnemonic: "",
+      height: 2580000,
+      mnemonic: "water water water water water "
+          "water water water water water "
+          "water water water water water "
+          "water water water water water "
+          "water water water water water",
     );
-    walletInfo = WalletInfo.external(
-        id: WalletBase.idFor(name, WalletType.wownero),
+    walletInfo = WowneroWalletInfo.external(
+        id: WalletBase.idFor(name),
         name: name,
-        type: WalletType.wownero,
         isRecovery: false,
         restoreHeight: credentials.height ?? 0,
         date: DateTime.now(),
@@ -103,7 +91,6 @@ void main() async {
       walletService: walletService,
       keyService: keysStorage,
     );
-    _walletCreationService.changeWalletType();
     // To restore from a seed
     final wallet = await
         // _walletCreationService.create(credentials);
@@ -126,25 +113,24 @@ void main() async {
   //     "${walletBase!.id} walletinfo: ${toStringForinfo(walletBase!.walletInfo)} type: ${walletBase!.type} balance: "
   //     "${walletBase!.balance.entries.first.value.available} currency: ${walletBase!.currency}");
   await walletBase?.connectToNode(
-      node: Node(uri: "eu-west-2.wow.xmr.pm:34568", type: WalletType.wownero));
+      node: Node(uri: "wownero.stackwallet.com:34568"));
   walletBase!.rescan(height: credentials.height);
   walletBase!.getNodeHeight();
   runApp(MyApp());
 }
 
-String toStringForinfo(WalletInfo info) {
-  return "id: ${info.id}  name: ${info.name} type: ${info.type} recovery: ${info.isRecovery}"
+String toStringForinfo(WowneroWalletInfo info) {
+  return "id: ${info.id}  name: ${info.name} recovery: ${info.isRecovery}"
       " restoreheight: ${info.restoreHeight} timestamp: ${info.timestamp} dirPath: ${info.dirPath} "
       "path: ${info.path} address: ${info.address} addresses: ${info.addresses}";
 }
 
-Future<String> pathForWalletDir(
-    {required String name, required WalletType type}) async {
+Future<String> pathForWalletDir({required String name}) async {
   Directory root = (await getApplicationDocumentsDirectory());
   if (Platform.isIOS) {
     root = (await getLibraryDirectory());
   }
-  final prefix = walletTypeToString(type).toLowerCase();
+  final prefix = "wownero";
   final walletsDir = Directory('${root.path}/wallets');
   final walletDire = Directory('${walletsDir.path}/$prefix/$name');
 
@@ -155,10 +141,8 @@ Future<String> pathForWalletDir(
   return walletDire.path;
 }
 
-Future<String> pathForWallet(
-        {required String name, required WalletType type}) async =>
-    await pathForWalletDir(name: name, type: type)
-        .then((path) => path + '/$name');
+Future<String> pathForWallet({required String name}) async =>
+    await pathForWalletDir(name: name).then((path) => path + '/$name');
 
 class MyApp extends StatefulWidget {
   @override
@@ -222,7 +206,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () async {
                   Output output = Output(walletBase!); //
                   output.address =
-                      "45ssGbDbLTnjdhpAm89PDpHpj6r5xWXBwL6Bh8hpy3PUcEnLgroo9vFJ9UE3HsAT5TTSk3Cqe2boJQHePAXisQSu9i6tz5A";
+                      "Wo5EdU75i8w9tWaUse8CVwUACK9K4uEjG86GQ3zp4RZe824ErKnFNqQYF6wPfg3Tq2LXnL2cAdVBnbcFD9vxbgvR1wGPCd3Dx";
                   output.setCryptoAmount("0.00001011");
                   List<Output> outputs = [output];
                   Object tmp =

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_libmonero_example">
+    package="com.example.flutter_libwownero_example">
    <application
-        android:label="flutter_libmonero_example"
+        android:label="flutter_libwownero_example"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

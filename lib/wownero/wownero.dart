@@ -1,13 +1,3 @@
-import 'package:cw_core/account.dart' as wownero_account;
-import 'package:cw_core/balance.dart';
-import 'package:cw_core/monero_transaction_priority.dart';
-import 'package:cw_core/output_info.dart';
-import 'package:cw_core/transaction_history.dart';
-import 'package:cw_core/transaction_info.dart';
-import 'package:cw_core/transaction_priority.dart';
-import 'package:cw_core/wallet_credentials.dart';
-import 'package:cw_core/wallet_info.dart';
-import 'package:cw_core/wallet_service.dart';
 import 'package:cw_wownero/api/wallet.dart' as wownero_wallet_api;
 //import 'package:cw_wownero/mnemonics/english.dart';
 import 'package:cw_wownero/mnemonics/english14.dart';
@@ -17,10 +7,20 @@ import 'package:cw_wownero/wownero_transaction_creation_credentials.dart';
 import 'package:cw_wownero/wownero_transaction_info.dart';
 import 'package:cw_wownero/wownero_wallet.dart';
 import 'package:cw_wownero/wownero_wallet_service.dart';
-import 'package:flutter_libmonero/view_model/send/output.dart';
+import 'package:flutter_libwownero/view_model/send/output.dart';
 import 'package:hive/hive.dart';
-import 'package:cw_core/get_height_by_date.dart';
 import 'package:mobx/mobx.dart';
+import 'package:wow_cw_core/account.dart' as wownero_account;
+import 'package:wow_cw_core/balance.dart';
+import 'package:wow_cw_core/get_height_by_date.dart';
+import 'package:wow_cw_core/monero_transaction_priority.dart';
+import 'package:wow_cw_core/output_info.dart';
+import 'package:wow_cw_core/transaction_history.dart';
+import 'package:wow_cw_core/transaction_info.dart';
+import 'package:wow_cw_core/transaction_priority.dart';
+import 'package:wow_cw_core/wallet_credentials.dart';
+import 'package:wow_cw_core/wallet_info.dart';
+import 'package:wow_cw_core/wallet_service.dart';
 
 part 'cw_wownero.dart';
 
@@ -89,7 +89,8 @@ abstract class Wownero {
 
   WowneroWalletDetails getWowneroWalletDetails(Object wallet);
 
-  String getTransactionAddress(Object wallet, int accountIndex, int addressIndex);
+  String getTransactionAddress(
+      Object wallet, int accountIndex, int addressIndex);
 
   int getHeightByDate({DateTime? date});
 
@@ -102,7 +103,7 @@ abstract class Wownero {
   List<TransactionPriority> getTransactionPriorities();
   List<String> getWowneroWordList(String language, {int seedWordsLength = 14});
 
-  WalletCredentials createWowneroRestoreWalletFromKeysCredentials(
+  WowneroWalletCredentials createWowneroRestoreWalletFromKeysCredentials(
       {String name,
       String spendKey,
       String viewKey,
@@ -110,9 +111,9 @@ abstract class Wownero {
       String password,
       String language,
       int height});
-  WalletCredentials createWowneroRestoreWalletFromSeedCredentials(
+  WowneroWalletCredentials createWowneroRestoreWalletFromSeedCredentials(
       {String name, String password, int height, String mnemonic});
-  WalletCredentials createWowneroNewWalletCredentials(
+  WowneroWalletCredentials createWowneroNewWalletCredentials(
       {String name,
       String password,
       String language,
@@ -127,7 +128,7 @@ abstract class Wownero {
   void setCurrentAccount(Object wallet, int id, String label);
   void onStartup();
   int? getTransactionInfoAccountId(TransactionInfo tx);
-  WalletService createWowneroWalletService(Box<WalletInfo> walletInfoSource);
+  WowneroWalletService createWowneroWalletService(Box<WowneroWalletInfo> walletInfoSource);
 }
 
 abstract class WowneroSubaddressList {

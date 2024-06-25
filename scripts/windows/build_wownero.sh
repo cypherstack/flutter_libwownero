@@ -53,12 +53,6 @@ rm -rf ./build/release
 mkdir -p ./build/release
 cd ./build/release
 
-CW_DIR="$(pwd)"/../../../../../../../flutter_libmonero
-CW_WOWNERO_EXTERNAL_DIR=${CW_DIR}/cw_wownero/ios/External/android
-mkdir -p $CW_WOWNERO_EXTERNAL_DIR/include
-cp ../../src/wallet/api/wallet2_api.h $DEST_INCLUDE_DIR
-cp ../../src/wallet/api/wallet2_api.h ${CW_WOWNERO_EXTERNAL_DIR}/include
-
 CC=x86_64-w64-mingw32.static-gcc
 CXX=x86_64-w64-mingw32.static-g++
 HOST=x86_64-w64-mingw32.static
@@ -80,3 +74,9 @@ make wallet_api -j$THREADS
 find . -path ./lib -prune -o -name '*.a' -exec cp '{}' lib \;
 
 cp -r ./lib/* $DEST_LIB_DIR
+cp ../../src/wallet/api/wallet2_api.h  $DEST_INCLUDE_DIR
+
+CW_DIR="$(pwd)"/../../../../../../../flutter_libwownero # 🧐
+CW_WOWNERO_EXTERNAL_DIR=${CW_DIR}/cw_wownero/ios/External/android
+mkdir -p $CW_WOWNERO_EXTERNAL_DIR/include
+cp ../../src/wallet/api/wallet2_api.h ${CW_WOWNERO_EXTERNAL_DIR}/include

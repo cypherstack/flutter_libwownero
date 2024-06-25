@@ -1,8 +1,8 @@
 import 'package:cw_wownero/api/structs/subaddress_row.dart';
+import 'package:cw_wownero/api/subaddress_list.dart' as subaddress_list;
 import 'package:flutter/services.dart';
 import 'package:mobx/mobx.dart';
-import 'package:cw_wownero/api/subaddress_list.dart' as subaddress_list;
-import 'package:cw_core/subaddress.dart';
+import 'package:wow_cw_core/subaddress.dart';
 
 part 'wownero_subaddress_list.g.dart';
 
@@ -50,12 +50,13 @@ abstract class WowneroSubaddressListBase with Store {
 
     return subaddresses
         .map((subaddressRow) => Subaddress(
-          id: subaddressRow.getId(),
-          address: subaddressRow.getAddress(),
-          label: subaddressRow.getId() == 0 &&
-                subaddressRow.getLabel().toLowerCase() == 'Primary account'.toLowerCase()
-            ? 'Primary address'
-            : subaddressRow.getLabel()))
+            id: subaddressRow.getId(),
+            address: subaddressRow.getAddress(),
+            label: subaddressRow.getId() == 0 &&
+                    subaddressRow.getLabel().toLowerCase() ==
+                        'Primary account'.toLowerCase()
+                ? 'Primary address'
+                : subaddressRow.getLabel()))
         .toList();
   }
 

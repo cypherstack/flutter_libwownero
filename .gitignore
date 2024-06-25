@@ -110,7 +110,7 @@ ios/Flutter/.last_build_id
 *.sublime-project
 
 shared_external/**
-cw_shared_external/ios/External/
+wow_cw_shared_external/ios/External/
 # cw_haven/**
 cw_haven/ios/External/
 cw_haven/android/.externalNativeBuild/

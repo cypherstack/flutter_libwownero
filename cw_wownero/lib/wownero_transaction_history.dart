@@ -1,7 +1,8 @@
 import 'dart:core';
-import 'package:mobx/mobx.dart';
-import 'package:cw_core/transaction_history.dart';
+
 import 'package:cw_wownero/wownero_transaction_info.dart';
+import 'package:mobx/mobx.dart';
+import 'package:wow_cw_core/transaction_history.dart';
 
 part 'wownero_transaction_history.g.dart';
 

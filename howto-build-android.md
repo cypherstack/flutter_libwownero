@@ -77,7 +77,7 @@ You will be prompted to create two passwords. First you will be prompted for the
 
 Create the directory that will be use to store the CakeWallet source and download the source code into that directory.
 
-`$ git clone https://github.com/cypherstack/flutter_libmonero.git --branch main`
+`$ git clone https://github.com/cypherstack/flutter_libwownero.git --branch main`
 
 Proceed into the source code before proceeding with the next steps:
 

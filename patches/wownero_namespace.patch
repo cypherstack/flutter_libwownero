@@ -1,0 +1,383 @@
+diff --git a/src/wallet/api/address_book.cpp b/src/wallet/api/address_book.cpp
+index c73653e..84fd1f1 100644
+--- a/src/wallet/api/address_book.cpp
++++ b/src/wallet/api/address_book.cpp
+@@ -37,7 +37,7 @@
+ 
+ #include <vector>
+ 
+-namespace Monero {
++namespace Wownero {
+   
+ AddressBook::~AddressBook() {}
+   
+diff --git a/src/wallet/api/address_book.h b/src/wallet/api/address_book.h
+index 5b06550..d7d1718 100644
+--- a/src/wallet/api/address_book.h
++++ b/src/wallet/api/address_book.h
+@@ -31,7 +31,7 @@
+ #include "wallet/api/wallet2_api.h"
+ #include "wallet/wallet2.h"
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class WalletImpl;
+ 
+diff --git a/src/wallet/api/coins.cpp b/src/wallet/api/coins.cpp
+index 99c3a51..077c74f 100644
+--- a/src/wallet/api/coins.cpp
++++ b/src/wallet/api/coins.cpp
+@@ -10,7 +10,7 @@
+ 
+ using namespace epee;
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+     Coins::~Coins() = default;
+ 
+diff --git a/src/wallet/api/coins.h b/src/wallet/api/coins.h
+index 3293d8a..5e70650 100644
+--- a/src/wallet/api/coins.h
++++ b/src/wallet/api/coins.h
+@@ -4,7 +4,7 @@
+ #include "wallet/api/wallet2_api.h"
+ #include "wallet/wallet2.h"
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+     class WalletImpl;
+ 
+diff --git a/src/wallet/api/coins_info.cpp b/src/wallet/api/coins_info.cpp
+index 06d874d..78819c8 100644
+--- a/src/wallet/api/coins_info.cpp
++++ b/src/wallet/api/coins_info.cpp
+@@ -2,7 +2,7 @@
+ 
+ using namespace std;
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+     CoinsInfo::~CoinsInfo() = default;
+ 
+@@ -115,4 +115,4 @@ namespace Monero {
+     }
+ } // namespace
+ 
+-namespace Bitmonero = Monero;
++namespace Bitmonero = Wownero;
+diff --git a/src/wallet/api/coins_info.h b/src/wallet/api/coins_info.h
+index c761093..5f1b337 100644
+--- a/src/wallet/api/coins_info.h
++++ b/src/wallet/api/coins_info.h
+@@ -5,7 +5,7 @@
+ #include <string>
+ #include <ctime>
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+     class CoinsImpl;
+ 
+diff --git a/src/wallet/api/pending_transaction.cpp b/src/wallet/api/pending_transaction.cpp
+index 25e5446..c523e4b 100644
+--- a/src/wallet/api/pending_transaction.cpp
++++ b/src/wallet/api/pending_transaction.cpp
+@@ -45,7 +45,7 @@
+ 
+ using namespace std;
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ PendingTransaction::~PendingTransaction() {}
+ 
+diff --git a/src/wallet/api/pending_transaction.h b/src/wallet/api/pending_transaction.h
+index fa2cf65..8199e30 100644
+--- a/src/wallet/api/pending_transaction.h
++++ b/src/wallet/api/pending_transaction.h
+@@ -36,7 +36,7 @@
+ #include <vector>
+ 
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class WalletImpl;
+ class PendingTransactionImpl : public PendingTransaction
+diff --git a/src/wallet/api/pending_transaction_info.cpp b/src/wallet/api/pending_transaction_info.cpp
+index 86499e0..97dbded 100644
+--- a/src/wallet/api/pending_transaction_info.cpp
++++ b/src/wallet/api/pending_transaction_info.cpp
+@@ -3,7 +3,7 @@
+ 
+ using namespace std;
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+     PendingTransactionInfo::~PendingTransactionInfo() = default;
+ 
+diff --git a/src/wallet/api/pending_transaction_info.h b/src/wallet/api/pending_transaction_info.h
+index 58ccc4f..6283a6b 100644
+--- a/src/wallet/api/pending_transaction_info.h
++++ b/src/wallet/api/pending_transaction_info.h
+@@ -6,7 +6,7 @@
+ #include "wallet.h"
+ #include <string>
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class PendingTransactionImpl;
+ 
+diff --git a/src/wallet/api/subaddress.cpp b/src/wallet/api/subaddress.cpp
+index 0fe912a..f8b083a 100644
+--- a/src/wallet/api/subaddress.cpp
++++ b/src/wallet/api/subaddress.cpp
+@@ -34,7 +34,7 @@
+ 
+ #include <vector>
+ 
+-namespace Monero {
++namespace Wownero {
+   
+ Subaddress::~Subaddress() {}
+   
+diff --git a/src/wallet/api/subaddress.h b/src/wallet/api/subaddress.h
+index 53ece12..555e92b 100644
+--- a/src/wallet/api/subaddress.h
++++ b/src/wallet/api/subaddress.h
+@@ -29,7 +29,7 @@
+ #include "wallet/api/wallet2_api.h"
+ #include "wallet/wallet2.h"
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class WalletImpl;
+ 
+diff --git a/src/wallet/api/subaddress_account.cpp b/src/wallet/api/subaddress_account.cpp
+index e8153df..a4f02de 100644
+--- a/src/wallet/api/subaddress_account.cpp
++++ b/src/wallet/api/subaddress_account.cpp
+@@ -34,7 +34,7 @@
+ 
+ #include <vector>
+ 
+-namespace Monero {
++namespace Wownero {
+   
+ SubaddressAccount::~SubaddressAccount() {}
+   
+diff --git a/src/wallet/api/subaddress_account.h b/src/wallet/api/subaddress_account.h
+index 94cab47..30f6236 100644
+--- a/src/wallet/api/subaddress_account.h
++++ b/src/wallet/api/subaddress_account.h
+@@ -29,7 +29,7 @@
+ #include "wallet/api/wallet2_api.h"
+ #include "wallet/wallet2.h"
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class WalletImpl;
+ 
+diff --git a/src/wallet/api/transaction_construction_info.cpp b/src/wallet/api/transaction_construction_info.cpp
+index 10cef2a..5ef6ac8 100644
+--- a/src/wallet/api/transaction_construction_info.cpp
++++ b/src/wallet/api/transaction_construction_info.cpp
+@@ -2,7 +2,7 @@
+ 
+ using namespace std;
+ 
+-namespace Monero {
++namespace Wownero {
+     TransactionConstructionInfo::~TransactionConstructionInfo() = default;
+ 
+     TransactionConstructionInfo::Input::Input(uint64_t _amount, const std::string &_pubkey)
+diff --git a/src/wallet/api/transaction_construction_info.h b/src/wallet/api/transaction_construction_info.h
+index 48c2039..08a1182 100644
+--- a/src/wallet/api/transaction_construction_info.h
++++ b/src/wallet/api/transaction_construction_info.h
+@@ -6,7 +6,7 @@
+ #include "wallet.h"
+ #include <string>
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class TransactionConstructionInfoImpl : public TransactionConstructionInfo
+ {
+diff --git a/src/wallet/api/transaction_history.cpp b/src/wallet/api/transaction_history.cpp
+index b330828..678e0c9 100644
+--- a/src/wallet/api/transaction_history.cpp
++++ b/src/wallet/api/transaction_history.cpp
+@@ -42,7 +42,7 @@
+ 
+ using namespace epee;
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ TransactionHistory::~TransactionHistory() {}
+ 
+diff --git a/src/wallet/api/transaction_history.h b/src/wallet/api/transaction_history.h
+index 1d52f4a..34bf22b 100644
+--- a/src/wallet/api/transaction_history.h
++++ b/src/wallet/api/transaction_history.h
+@@ -31,7 +31,7 @@
+ #include "wallet/api/wallet2_api.h"
+ #include <boost/thread/shared_mutex.hpp>
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class WalletImpl;
+ 
+diff --git a/src/wallet/api/transaction_info.cpp b/src/wallet/api/transaction_info.cpp
+index 6f47942..d31d49a 100644
+--- a/src/wallet/api/transaction_info.cpp
++++ b/src/wallet/api/transaction_info.cpp
+@@ -33,7 +33,7 @@
+ 
+ using namespace std;
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ TransactionInfo::~TransactionInfo() {}
+ 
+diff --git a/src/wallet/api/transaction_info.h b/src/wallet/api/transaction_info.h
+index e931a2b..fd2cb74 100644
+--- a/src/wallet/api/transaction_info.h
++++ b/src/wallet/api/transaction_info.h
+@@ -32,7 +32,7 @@
+ #include <string>
+ #include <ctime>
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class TransactionHistoryImpl;
+ 
+diff --git a/src/wallet/api/unsigned_transaction.cpp b/src/wallet/api/unsigned_transaction.cpp
+index 8e76591..a19070d 100644
+--- a/src/wallet/api/unsigned_transaction.cpp
++++ b/src/wallet/api/unsigned_transaction.cpp
+@@ -43,7 +43,7 @@
+ 
+ using namespace std;
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ UnsignedTransaction::~UnsignedTransaction() {}
+ 
+diff --git a/src/wallet/api/unsigned_transaction.h b/src/wallet/api/unsigned_transaction.h
+index 2c89aae..6e7d553 100644
+--- a/src/wallet/api/unsigned_transaction.h
++++ b/src/wallet/api/unsigned_transaction.h
+@@ -35,7 +35,7 @@
+ #include <vector>
+ 
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class WalletImpl;
+ class UnsignedTransactionImpl : public UnsignedTransaction
+diff --git a/src/wallet/api/utils.cpp b/src/wallet/api/utils.cpp
+index d8dcedc..8cc5ed0 100644
+--- a/src/wallet/api/utils.cpp
++++ b/src/wallet/api/utils.cpp
+@@ -35,7 +35,7 @@
+ 
+ using namespace std;
+ 
+-namespace Monero {
++namespace Wownero {
+ namespace Utils {
+ 
+ bool isAddressLocal(const std::string &address)
+diff --git a/src/wallet/api/wallet.cpp b/src/wallet/api/wallet.cpp
+index 240c796..1eeb77d 100644
+--- a/src/wallet/api/wallet.cpp
++++ b/src/wallet/api/wallet.cpp
+@@ -56,7 +56,7 @@ using namespace cryptonote;
+ #undef MONERO_DEFAULT_LOG_CATEGORY
+ #define MONERO_DEFAULT_LOG_CATEGORY "WalletAPI"
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ namespace {
+     // copy-pasted from simplewallet
+diff --git a/src/wallet/api/wallet.h b/src/wallet/api/wallet.h
+index 517f4b0..f9cbb31 100644
+--- a/src/wallet/api/wallet.h
++++ b/src/wallet/api/wallet.h
+@@ -40,7 +40,7 @@
+ #include <boost/thread/condition_variable.hpp>
+ 
+ 
+-namespace Monero {
++namespace Wownero {
+ class TransactionHistoryImpl;
+ class PendingTransactionImpl;
+ class UnsignedTransactionImpl;
+diff --git a/src/wallet/api/wallet2_api.h b/src/wallet/api/wallet2_api.h
+index 31c60e9..10fde3a 100644
+--- a/src/wallet/api/wallet2_api.h
++++ b/src/wallet/api/wallet2_api.h
+@@ -40,7 +40,7 @@
+ #include <stdexcept>
+ 
+ //  Public interface for libwallet library
+-namespace Monero {
++namespace Wownero {
+ 
+ enum NetworkType : uint8_t {
+     MAINNET = 0,
+diff --git a/src/wallet/api/wallet_manager.cpp b/src/wallet/api/wallet_manager.cpp
+index b166d8a..c2468c1 100644
+--- a/src/wallet/api/wallet_manager.cpp
++++ b/src/wallet/api/wallet_manager.cpp
+@@ -47,7 +47,7 @@ namespace epee {
+     unsigned int g_test_dbg_lock_sleep = 0;
+ }
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ WalletManagerImpl::WalletManagerImpl()
+ {
+diff --git a/src/wallet/api/wallet_manager.h b/src/wallet/api/wallet_manager.h
+index 206aedc..60eab84 100644
+--- a/src/wallet/api/wallet_manager.h
++++ b/src/wallet/api/wallet_manager.h
+@@ -33,7 +33,7 @@
+ #include "net/http.h"
+ #include <string>
+ 
+-namespace Monero {
++namespace Wownero {
+ 
+ class WalletManagerImpl : public WalletManager
+ {
+diff --git a/translations/monero_bn.ts b/translations/monero_bn.ts
+index ff53103..b9fb60f 100644
+--- a/translations/monero_bn.ts
++++ b/translations/monero_bn.ts
+@@ -2,7 +2,7 @@
+ <!DOCTYPE TS>
+ <TS version="2.1">
+ <context>
+-    <name>Monero::AddressBookImpl</name>
++    <name>Wownero::AddressBookImpl</name>
+     <message>
+         <location filename="../src/wallet/api/address_book.cpp" line="53"/>
+         <source>Invalid destination address</source>
